@@ -1,6 +1,6 @@
 # Vue Netflix Clone
 
-This project is built using [Vue 3](https://vuejs.org/) , [Pinia](https://pinia.vuejs.org/), [TailwindCss](https://tailwindcss.com/), [Movie-Trailer](https://www.npmjs.com/package/movie-trailer), [Vueuse](https://vueuse.org/), [Vuelidate](https://vuelidate-next.netlify.app), [Vue-Toastification](https://github.com/Maronato/vue-toastification/tree/next) and [Youtube-Component](https://www.npmjs.com/package/youtube-vue3).
+This project is built using [Vue 3](https://vuejs.org/) , [Pinia](https://pinia.vuejs.org/), [TailwindCss](https://tailwindcss.com/), [Movie-Trailer](https://www.npmjs.com/package/movie-trailer), [Vueuse](https://vueuse.org/), [Vuelidate](https://vuelidate-next.netlify.app), [Vue-Toastification](https://github.com/Maronato/vue-toastification/tree/next), [Supabase](https://supabase.com/) and [Youtube-Component](https://www.npmjs.com/package/youtube-vue3).
 
 ## Recommended IDE Setup
 
@@ -11,6 +11,8 @@ This project is built using [Vue 3](https://vuejs.org/) , [Pinia](https://pinia.
 See [Vite Configuration Reference](https://vitejs.dev/config/).
 
 ## Project Setup
+
+Get your TMDB API Key from [TMDB](https://developers.themoviedb.org/3)
 
 ```sh
 npm install
