@@ -12,7 +12,7 @@ watchEffect(() => {
 <template>
     <div>
         <Navbar />
-        <div class="flex items-center flex-wrap pt-4">
+        <div class="flex items-center flex-wrap pt-16">
             <div v-for="movie in listMovies" :key="movie.id" class="m-1 md:m-2">
                 <router-link :to="{ name: 'movie', params: { id: movie.id } }">
                     <img :src="`${baseURL}${movie?.backdrop_path || movie?.poster_path}`" :alt="movie?.title"

@@ -14,7 +14,7 @@ const fetchRandomMovie = async () => {
 fetchRandomMovie()
 </script>
 <template>
-    <div class="flex flex-col space-y-2 pt-16 pb-32 md:pb-32 md:pt-24">
+    <div class="flex flex-col space-y-2 pt-28 pb-32 md:pb-32 md:pt-32">
         <div class="absolute top-0 left-0 -z-10 h-[95vh] w-full">
             <img :src="`${baseURL}${selectedMovie?.backdrop_path || selectedMovie?.poster_path}`"
                 class="w-full h-96 object-cover lg:h-full" />

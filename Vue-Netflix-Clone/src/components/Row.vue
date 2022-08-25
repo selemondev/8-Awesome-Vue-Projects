@@ -23,7 +23,7 @@ fetchMovies()
 </script>
 <template>
     <div>
-        <div class="pb-4 pt-8 pl-3 md:pt-10">
+        <div class="pb-4 pt-4 pl-3 md:pt-10">
             <h2 class="text-white font-bold text-lg md:text-2xl">{{ props.title }}</h2>
         </div>
         <div class="flex items-center overflow-y-hidden scrollbar-hide overflow-x-scroll">
