@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply font-Roboto;
+    }
+}
+
+
+@layer components {
+    .flex-center {
+        @apply flex justify-center items-center
+    }
+
+    .flex-around {
+        @apply flex justify-around items-center
+    }
+
+    .flex-between {
+        @apply flex justify-between items-center
+    }
+
+    .grid-center {
+        @apply grid place-items-center
+    }
+}
