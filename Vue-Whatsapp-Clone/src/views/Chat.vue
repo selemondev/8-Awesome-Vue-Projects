@@ -1,18 +1,21 @@
 <script setup>
 import Placeholder from "../assets/Placeholder.png";
 import Sidebar from "../components/Sidebar.vue";
-import { FaceSmileIcon, PaperClipIcon, MicrophoneIcon, SunIcon, MoonIcon } from "@heroicons/vue/24/outline";
+import ChatHeader from "../components/ChatHeader.vue";
+import MessageInput from "../components/MessageInput.vue";
+import MessageContainer from "../components/MessageContainer.vue";
+import { SunIcon, MoonIcon } from "@heroicons/vue/24/outline";
 import { EllipsisVerticalIcon, MagnifyingGlassIcon } from "@heroicons/vue/24/solid";
 import { db, auth } from "../firebaseConfig";
 import {
-  collection,
-  query,
-  where,
-  onSnapshot,
-  orderBy,
-  doc,
-  getDoc,
-  updateDoc,
+    collection,
+    query,
+    where,
+    onSnapshot,
+    orderBy,
+    doc,
+    getDoc,
+    updateDoc,
 } from "firebase/firestore";
 import { watchEffect, ref } from "vue";
 import { useRouter } from "vue-router";
@@ -24,14 +27,15 @@ const users = ref([]);
 const user = ref([]);
 const search = ref("");
 const selectedUser = ref("")
-const messagesContainer = ref([])
+const messagesContainer = ref([]);
+const contactContainer = ref([]);
 watchEffect(() => {
     const userReference = collection(db, "users");
-    const q =  query(userReference, where("uid", "not-in", [currentUser]));
+    const q = query(userReference, where("uid", "not-in", [currentUser]));
     const unsub = onSnapshot(q, querySnapshot => {
         let userContacts = [];
         querySnapshot.forEach(doc => {
-            userContacts.push({...doc.data(), id: doc.id})
+            userContacts.push({ ...doc.data(), id: doc.id })
         });
         users.value = userContacts;
     });
@@ -47,11 +51,30 @@ watchEffect(() => {
     })
 });
 
-const selectUser = async (userId, avatar, username) => {
-    selectedUser.value = userId;
+const selectUser = async (userId, username, avatar, contact) => {
+    contactContainer.value = contact;
+    selectedUser.value = contactContainer.value.uid;
     // all the conversation between the currentUser and the selectedUser will be stored in this id
-    const id = currentUser > selectedUser ? `${currentUser + selectedUser}` : `${selectedUser + currentUser}`;
+    const id = currentUser > selectedUser.value ? `${currentUser + selectedUser.value}` : `${selectedUser.value + currentUser}`;
+    const messagesReference = collection(db, "messages", id, "chat");
+    const q = query(messagesReference, orderBy("createdAt", "asc"));
+    onSnapshot(q, querySnapshot => {
+        let messages = [];
+        querySnapshot.forEach((doc) => {
+            messages.push({ ...doc.data(), id: doc.id });
+        });
+        messagesContainer.value = messages;
+    });
 
+    // we get the last messages between the currentUser and the selectedUser
+    const docSnap = await getDoc(doc(db, "lastMessage", id));
+    // if the last message is not from the currentUser the unread will be false
+    if (docSnap.data() && docSnap.data().from !== currentUser) {
+        // update last message document and set unread to false
+        await updateDoc(doc(db, "lastMessage", id), {
+            unread: false
+        });
+    }
 }
 
 const handleLogOut = () => {
@@ -72,12 +95,13 @@ const handleLogOut = () => {
                         <!-- Header -->
                         <div class="py-2 px-3 bg-grey-lighter flex flex-row justify-between items-center">
                             <div class="" v-for="profile in user">
-                                <img class="w-10 h-10 rounded-full" :src="[ profile.avatar ? profile.avatar : Placeholder]" />
+                                <img class="w-10 h-10 rounded-full"
+                                    :src="[profile.avatar ? profile.avatar : Placeholder]" />
                             </div>
 
                             <div class="flex-center space-x-2">
                                 <div>
-                                    <SunIcon class="w-6 h-6" @click="handleLogOut()"/>
+                                    <SunIcon class="w-6 h-6" @click="handleLogOut()" />
                                 </div>
                                 <div class="hidden lg:flex">
                                     <EllipsisVerticalIcon class="w-6 h-6" />
@@ -104,37 +128,19 @@ const handleLogOut = () => {
 
                         <!-- Contacts -->
                         <div class="bg-grey-lighter flex-1 overflow-auto" v-for="contact in users">
-                            <Sidebar
-                            :userId="contact.uid"
-                            :avatar="contact.avatar"
-                            :username="contact.username"
-                            @changeChat="selectUser"
-                            />
+                            <Sidebar :currentUserId="currentUser" :contact=contact :userId="contact.uid"
+                                :avatar="contact.avatar" :username="contact.username" @changeChat="selectUser" />
                         </div>
 
                     </div>
 
 
                     <!-- Right -->
-                    <div class="w-2/3 border flex flex-col">
-
+                    <div v-if="contactContainer.uid" class="w-2/3 border flex flex-col">
                         <!-- Header -->
                         <div class="py-2 px-3 bg-grey-lighter flex flex-row justify-between items-center">
-                            <div class="flex items-center">
-                                <div>
-                                    <img class="w-10 h-10 rounded-full"
-                                        src="https://darrenjameseeley.files.wordpress.com/2014/09/expendables3.jpeg" />
-                                </div>
-                                <div class="ml-4">
-                                    <p class="text-grey-darkest">
-                                        Stallon
-                                    </p>
-                                    <p class="hidden text-grey-darker text-xs mt-1 md:block">
-                                        Last seen on Monday
-                                    </p>
-                                </div>
-                            </div>
-
+                            <ChatHeader :chatUsername="contactContainer.username" :chatAvatar="contactContainer.avatar"
+                                :chatTimestamp="contactContainer.createdAt" :chatOnline="contactContainer.online" />
                             <div class="flex-center space-x-2">
                                 <div>
                                     <MagnifyingGlassIcon class="w-5 h-5" />
@@ -147,149 +153,20 @@ const handleLogOut = () => {
 
                         <!-- Messages -->
                         <div class="flex-1 overflow-auto" style="background-color: #DAD3CC">
-                            <div class="py-2 px-3">
-
-                                <div class="flex justify-center mb-2">
-                                    <div class="rounded py-2 px-4" style="background-color: #DDECF2">
-                                        <p class="text-sm uppercase">
-                                            February 20, 2018
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div class="flex justify-center mb-4">
-                                    <div class="rounded py-2 px-4" style="background-color: #FCF4CB">
-                                        <p class="text-xs">
-                                            Messages to this chat and calls are now secured with end-to-end encryption.
-                                            Tap for more info.
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div class="flex mb-2">
-                                    <div class="rounded py-2 px-3" style="background-color: #F2F2F2">
-                                        <p class="text-sm text-teal">
-                                            Sylverter Stallone
-                                        </p>
-                                        <p class="text-sm mt-1">
-                                            Hi everyone! Glad you could join! I am making a new movie.
-                                        </p>
-                                        <p class="text-right text-xs text-grey-dark mt-1">
-                                            12:45 pm
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div class="flex mb-2">
-                                    <div class="rounded py-2 px-3" style="background-color: #F2F2F2">
-                                        <p class="text-sm text-purple">
-                                            Tom Cruise
-                                        </p>
-                                        <p class="text-sm mt-1">
-                                            Hi all! I have one question for the movie
-                                        </p>
-                                        <p class="text-right text-xs text-grey-dark mt-1">
-                                            12:45 pm
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div class="flex mb-2">
-                                    <div class="rounded py-2 px-3" style="background-color: #F2F2F2">
-                                        <p class="text-sm text-orange">
-                                            Harrison Ford
-                                        </p>
-                                        <p class="text-sm mt-1">
-                                            Again?
-                                        </p>
-                                        <p class="text-right text-xs text-grey-dark mt-1">
-                                            12:45 pm
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div class="flex mb-2">
-                                    <div class="rounded py-2 px-3" style="background-color: #F2F2F2">
-                                        <p class="text-sm text-orange">
-                                            Russell Crowe
-                                        </p>
-                                        <p class="text-sm mt-1">
-                                            Is Andrés coming for this one?
-                                        </p>
-                                        <p class="text-right text-xs text-grey-dark mt-1">
-                                            12:45 pm
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div class="flex mb-2">
-                                    <div class="rounded py-2 px-3" style="background-color: #F2F2F2">
-                                        <p class="text-sm text-teal">
-                                            Sylverter Stallone
-                                        </p>
-                                        <p class="text-sm mt-1">
-                                            He is. Just invited him to join.
-                                        </p>
-                                        <p class="text-right text-xs text-grey-dark mt-1">
-                                            12:45 pm
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div class="flex justify-end mb-2">
-                                    <div class="rounded py-2 px-3" style="background-color: #E2F7CB">
-                                        <p class="text-sm mt-1">
-                                            Hi guys.
-                                        </p>
-                                        <p class="text-right text-xs text-grey-dark mt-1">
-                                            12:45 pm
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div class="flex justify-end mb-2">
-                                    <div class="rounded py-2 px-3" style="background-color: #E2F7CB">
-                                        <p class="text-sm mt-1">
-                                            Count me in
-                                        </p>
-                                        <p class="text-right text-xs text-grey-dark mt-1">
-                                            12:45 pm
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div class="flex mb-2">
-                                    <div class="rounded py-2 px-3" style="background-color: #F2F2F2">
-                                        <p class="text-sm text-purple">
-                                            Tom Cruise
-                                        </p>
-                                        <p class="text-sm mt-1">
-                                            Get Andrés on this movie ASAP!
-                                        </p>
-                                        <p class="text-right text-xs text-grey-dark mt-1">
-                                            12:45 pm
-                                        </p>
-                                    </div>
-                                </div>
-
+                            <div v-for="messages in messagesContainer">
+                                <MessageContainer :messages="messages" :currentUserId="currentUser" />
                             </div>
                         </div>
 
                         <!-- Input -->
-                        <div class="bg-grey-lighter px-4 py-4 flex items-center">
-                            <div class="flex-center space-x-1 md:space-x-2">
-                                <FaceSmileIcon class="w-4 h-4 md:w-6 md:h-6" />
-                                <PaperClipIcon class="w-4 h-4 md:w-6 md:h-6" />
-                            </div>
-                            <div class="flex-1 mx-2">
-                                <input class="input-style" placeholder="Type a message.." />
-                            </div>
-                            <div>
-                                <MicrophoneIcon class="w-4 h-4 md:w-6 md:h-6" />
-                            </div>
+                        <div v-if="contactContainer.uid">
+                            <MessageInput :contactId="contactContainer.uid" :currentUserId="currentUser" />
                         </div>
                     </div>
 
+                    <div v-else class="flex justify-center items-center">
+                        <p>Select a chat</p>
+                    </div>
                 </div>
             </div>
         </div>
