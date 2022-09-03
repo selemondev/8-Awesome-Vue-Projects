@@ -48,7 +48,7 @@ const handleSubmit = async () => {
         createdAt: Timestamp.fromDate(new Date()),
     });
 
-    await setDoc(doc(db, "lastMessage", id,), {
+    await setDoc(doc(db, "lastMessage", id), {
         text: inputEl.value,
         from: props.currentUserId,
         to: selectedUser.value,

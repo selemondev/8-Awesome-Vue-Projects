@@ -21,13 +21,14 @@ const props = defineProps({
         type: Object
     }
 });
+
 watchEffect(() => {
     const id = props.currentUserId > props.userId ? `${props.currentUserId + props.userId}` : `${props.userId + props.currentUserId}`;
-    let unsubscribe = onSnapshot(doc(db, "lastMessage", id), (doc) => {
+    const unsub = onSnapshot(doc(db, "lastMessage", id), (doc) => {
         lastMessage.value.push({ ...doc.data(), id: doc.id });
-        console.log(messages.value);
+        console.log(lastMessage.value)
     });
-    return () => unsubscribe();
+    return () => unsub()
 })
 
 </script>
