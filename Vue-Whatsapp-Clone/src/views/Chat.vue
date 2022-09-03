@@ -46,7 +46,6 @@ watchEffect(() => {
     getDoc(doc(db, "users", currentUser)).then((docSnap) => {
         if (docSnap.exists()) {
             user.value.push(docSnap.data());
-            console.log(user.value)
         }
     })
 });
