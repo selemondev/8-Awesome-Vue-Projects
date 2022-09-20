@@ -179,9 +179,3 @@ const handleLogOut = async () => {
         </div>
     </div>
 </template>
-
-<style>
-.dark {
-    background: black;
-}
-</style>
