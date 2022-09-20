@@ -14,10 +14,12 @@ const router = useRouter();
 const authStore = useAuthStore();
 const loading = ref(false);
 const token = ref("");
+const error = ref("")
 
 watchEffect(() => {
     token.value = authStore.userData;
     loading.value = authStore.loginLoading;
+    error.value = authStore.loginError;
     if( token.value ) {
         router.push("/chat")
     }
@@ -38,6 +40,11 @@ const handleSubmit = async () => {
     if( result ) {
        authStore.loginUser(formData.email, formData.password)
     }
+
+    setTimeout(() => {
+        error.value = "";
+        loading.value = ""
+    }, 2000);
 }
 </script>
 <template>
@@ -64,6 +71,10 @@ const handleSubmit = async () => {
                     <label for="password" class="form-label">Password</label>
                     <input type="password" placeholder="Password" class="form-input" v-model="formData.password"/>
                     <p class="error" v-if="v$.password.$error">{{v$.password.$errors[0].$message}}</p>
+                </div>
+
+                <div>
+                    <p class="error">{{ error }}</p>
                 </div>
 
                 <div class="pb-2">

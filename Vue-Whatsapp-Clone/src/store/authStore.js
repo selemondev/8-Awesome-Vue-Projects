@@ -40,6 +40,7 @@ export const useAuthStore = defineStore({
         this.registerLoading = false;
       } catch (err) {
         this.registerError = err.message;
+        this.registerLoading = false;
       }
     },
 
@@ -58,6 +59,7 @@ export const useAuthStore = defineStore({
         this.loginLoading = false;
       } catch (err) {
         this.loginError = err.message;
+        this.loginLoading = false;
       }
     },
     async logOut() {
