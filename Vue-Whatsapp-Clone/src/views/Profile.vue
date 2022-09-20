@@ -68,7 +68,7 @@ const handleSubmit = async () => {
         <div class="grid-center">
             <div v-for="currentUser in user" class="max-w-sm w-72 mt-6 md:w-80 md:mt-10">
                 <form @submit.prevent="handleSubmit"
-                    class="bg-white w-full border border-gray-200 shadow-md rounded-md py-4 px-6">
+                    class="bg-white w-full border border-gray-200 shadow-md rounded-md py-4 px-6 dark:bg-gray-800/75 dark:border dark:border-gray-900">
                     <div class="grid-center">
                         <h1 class="text-green-500 font-bold text-xl md:text-2xl">Set Up Your Profile</h1>
                     </div>
@@ -87,7 +87,7 @@ const handleSubmit = async () => {
                     <div class="pb-3 sm:pb-4">
                         <div class="flex-between">
                             <label for="username" class="form-label">Username</label>
-                            <PencilIcon class="w-4 h-4" />
+                            <PencilIcon class="w-4 h-4 dark:text-white" />
                         </div>
                         <input type="text" placeholder="Username" class="form-input" v-model="currentUser.username" />
                     </div>
@@ -95,7 +95,7 @@ const handleSubmit = async () => {
                     <div class="pb-3 sm:pb-2">
                         <div class="flex-between">
                             <label for="email" class="form-label">Bio</label>
-                            <PencilIcon class="w-4 h-4" />
+                            <PencilIcon class="w-4 h-4 dark:text-white" />
                         </div>
                         <div v-if="!currentUser?.bio">
                             <input type="bio" placeholder="Make it interesting" class="form-input"
