@@ -25,7 +25,6 @@ watchEffect(() => {
     const id = props.currentUserId > props.userId ? `${props.currentUserId + props.userId}` : `${props.userId + props.currentUserId}`;
     let unsubscribe = onSnapshot(doc(db, "lastMessage", id), (doc) => {
         lastMessage.value = { ...doc.data(), id: doc.id };
-        console.log(lastMessage.value)
     });
 
     return () => unsubscribe()
