@@ -26,7 +26,7 @@ watchEffect(() => {
     let unsubscribe = onSnapshot(doc(db, "lastMessage", id), (doc) => {
         lastMessage.value = { ...doc.data(), id: doc.id };
     });
-    return () => unsubscribe()
+    return () => unsubscribe();
 })
 </script>
 <template>
