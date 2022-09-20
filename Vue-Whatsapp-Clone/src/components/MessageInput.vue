@@ -63,9 +63,9 @@ const handleSubmit = async () => {
     <div>
         <form @submit.prevent="handleSubmit" class="bg-grey-lighter px-4 py-4 flex items-center">
             <div class="flex-center space-x-1 cursor-pointer md:space-x-2">
-                <FaceSmileIcon @click="showEmojis = !showEmojis" class="w-4 h-4 md:w-6 md:h-6" />
+                <FaceSmileIcon @click="showEmojis = !showEmojis" class="w-4 h-4 md:w-6 md:h-6 dark:text-white" />
                 <label for="fileUpload">
-                    <PaperClipIcon class="w-4 h-4 md:w-6 md:h-6" />
+                    <PaperClipIcon class="w-4 h-4 md:w-6 md:h-6 dark:text-white" />
                     <input type="file" @change="fileUpload" hidden name="fileUpload" id="fileUpload" accept="image/*" />
                 </label>
             </div>

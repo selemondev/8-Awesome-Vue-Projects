@@ -10,6 +10,7 @@ import { CameraIcon, PencilIcon } from "@heroicons/vue/24/outline";
 const user = ref([]);
 const selectedImage = ref("");
 const blob = ref("");
+const error = ref("")
 const router = useRouter();
 const loading = ref(false);
 const currentUser = auth?.currentUser.uid;
@@ -32,29 +33,36 @@ const formData = reactive({
     bio: "",
 });
 const handleSubmit = async () => {
-    try {
-        loading.value = true;
-        let sentImage;
-        const imageReference = storageRef(storage, `images/${new Date().getTime()} - ${selectedImage.name}`);
-        const snap = await uploadBytes(imageReference, selectedImage.value);
-        const downloadImageUrl = await getDownloadURL(storageRef(storage, snap.ref.fullPath));
-        sentImage = downloadImageUrl
-        // after uploading our image to the firebase storage, we update our users collection with our new profile image
-        // we need the avatarPath so that we can be able to delete our profile image if needed
-        await updateDoc(doc(db, "users", currentUser), {
-            bio: formData.bio,
-            avatar: sentImage,
-            avatarPath: snap.ref.fullPath
-        });
-        loading.value = false;
-        selectedImage.value = "";
-        router.push("/chat")
-    } catch (error) {
-        console.log(error.message)
+    if (selectedImage.value) {
+        try {
+            loading.value = true;
+            let sentImage;
+            const imageReference = storageRef(storage, `images/${new Date().getTime()} - ${selectedImage.name}`);
+            const snap = await uploadBytes(imageReference, selectedImage.value);
+            const downloadImageUrl = await getDownloadURL(storageRef(storage, snap.ref.fullPath));
+            sentImage = downloadImageUrl
+            // after uploading our image to the firebase storage, we update our users collection with our new profile image
+            // we need the avatarPath so that we can be able to delete our profile image if needed
+            await updateDoc(doc(db, "users", currentUser), {
+                bio: formData.bio,
+                avatar: sentImage,
+                avatarPath: snap.ref.fullPath
+            });
+            loading.value = false;
+            selectedImage.value = "";
+            router.push("/chat")
+        } catch (error) {
+            console.log(error.message)
+        }
+    } else {
+        error.value = "Choose your profile image";
+        setTimeout(() => {
+            error.value = ""
+        }, 2000)
     }
 };
 </script>
-    <template>
+<template>
     <div>
         <Navbar />
         <div class="grid-center">
@@ -70,8 +78,8 @@ const handleSubmit = async () => {
                             <CameraIcon class="w-6 h-6" />
                         </label>
                         <img v-if="blob" :src="blob" alt="profile-placeholder" class='h-32 w-32 rounded-full' />
-                        <img v-else :src="[currentUser.avatar ? currentUser.avatar : Placeholder]" alt="profile-placeholder"
-                            class='h-32 w-32 rounded-full' />
+                        <img v-else :src="[currentUser.avatar ? currentUser.avatar : Placeholder]"
+                            alt="profile-placeholder" class='h-32 w-32 rounded-full' />
                         <input type="file" @change="fileUpload" hidden name="fileUpload" id="fileUpload"
                             accept="image/*" />
                     </div>
@@ -84,7 +92,7 @@ const handleSubmit = async () => {
                         <input type="text" placeholder="Username" class="form-input" v-model="currentUser.username" />
                     </div>
 
-                    <div class="pb-3 sm:pb-4">
+                    <div class="pb-3 sm:pb-2">
                         <div class="flex-between">
                             <label for="email" class="form-label">Bio</label>
                             <PencilIcon class="w-4 h-4" />
@@ -100,9 +108,13 @@ const handleSubmit = async () => {
                         </div>
                     </div>
 
+                    <div class="my-3">
+                        <p class="error">{{ error }}</p>
+                    </div>
+
                     <div>
                         <button type="submit" class="form-btn">
-                            {{  loading ? "Loading...." : "Start Chat"  }}
+                            {{ loading ? "Loading...." : "Start Chat" }}
                         </button>
                     </div>
                 </form>

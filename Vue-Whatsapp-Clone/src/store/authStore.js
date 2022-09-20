@@ -2,7 +2,7 @@ import { defineStore, acceptHMRUpdate } from "pinia";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signOut
+  signOut,
 } from "firebase/auth";
 import { auth, db } from "../firebaseConfig";
 import { setDoc, Timestamp, updateDoc, doc } from "firebase/firestore";
@@ -63,9 +63,12 @@ export const useAuthStore = defineStore({
       }
     },
     async logOut() {
-        await signOut(auth);
-        localStorage.removeItem("user");
-        this.userData = null;
+      await signOut(auth);
+      localStorage.removeItem("user");
+      this.userData = null;
+      await updateDoc(doc(db, "users", currentUser), {
+            online: false,
+      });
     },
   },
 });
