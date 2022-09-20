@@ -12,8 +12,6 @@ const props = defineProps({
         type: String
     }
 });
-
-console.log("Messages: ", props.messages);
 </script>
 <template>
     <div class="py-2 px-3">
@@ -22,7 +20,7 @@ console.log("Messages: ", props.messages);
                 <p class="text-sm mt-1">
                     {{ messages.text }}
                 </p>
-                <p v-if="messages.createdAt" class="text-right text-xs text-grey-dark mt-1">
+                <p v-if="messages.createdAt" class="text-right text-xs text-gray-500 mt-1">
                     <timeago :datetime="messages.createdAt?.toDate()" :auto-update="60"></timeago>
                 </p>
             </div>
