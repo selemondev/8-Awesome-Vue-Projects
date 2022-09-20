@@ -1,4 +1,5 @@
 <script setup>
+import Robot from "../assets/robot.gif"
 import Sidebar from "../components/Sidebar.vue";
 import ChatHeader from "../components/ChatHeader.vue";
 import MessageInput from "../components/MessageInput.vue";
@@ -172,7 +173,7 @@ const handleLogOut = async () => {
                     </div>
 
                     <div v-else class="grid place-items-center w-full">
-                        <p class="dark:text-white">Select a chat</p>
+                        <img :src="Robot" alt="">
                     </div>
                 </div>
             </div>
