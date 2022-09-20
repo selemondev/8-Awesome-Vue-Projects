@@ -3,7 +3,6 @@ import { onSnapshot, doc } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 import { ref, watchEffect } from 'vue';
 const lastMessage = ref([]);
-const messages = ref([])
 const props = defineProps({
     currentUserId: {
         type: String
@@ -24,13 +23,11 @@ const props = defineProps({
 
 watchEffect(() => {
     const id = props.currentUserId > props.userId ? `${props.currentUserId + props.userId}` : `${props.userId + props.currentUserId}`;
-    const unsub = onSnapshot(doc(db, "lastMessage", id), (doc) => {
-        lastMessage.value.push({ ...doc.data(), id: doc.id });
-        console.log(lastMessage.value)
+    let unsubscribe = onSnapshot(doc(db, "lastMessage", id), (doc) => {
+        lastMessage.value = { ...doc.data(), id: doc.id };
     });
-    return () => unsub()
+    return () => unsubscribe();
 })
-
 </script>
 <template>
     <div @click="$emit('changeChat', props.id, props.username, props.avatar, props.contact)"
@@ -43,15 +40,27 @@ watchEffect(() => {
                 <p class="hidden text-grey-darkest md:block">
                     {{ props.username }}
                 </p>
-                <p v-for="message in lastMessage" :key="message.uid" class="hidden text-xs text-grey-darkest lg:block">
-                    <span v-if="message?.createdAt">
-                        <timeago :datetime="message.createdAt?.toDate()" :auto-update="60"></timeago>
+                <p class="hidden text-xs text-grey-darkest lg:block">
+                    <span v-if="lastMessage?.createdAt">
+                        <timeago :datetime="lastMessage.createdAt?.toDate()" :auto-update="60"></timeago>
                     </span>
                 </p>
             </div>
-            <div v-for="message in lastMessage" :key="message.uid" class="hidden mt-1 lg:block">
-                <div v-if="message?.text">
-                    <p class="text-sm"> {{ message?.text }}</p>
+            <div class="hidden mt-1 lg:block">
+                <div v-if="lastMessage?.text" class="flex-between">
+                    <div class="flex-center space-x-2">
+                        <p v-if="lastMessage.from === currentUserId">Me: </p>
+                        <p class="text-sm"> {{ lastMessage?.text }}</p>
+                    </div>
+                    <p v-if="lastMessage?.unread && lastMessage?.from !== currentUserId">
+                        <p class="w-4 h-4 pt-.5 text-white bg-green-500 rounded-full text-center text-xs">1</p>
+                    </p>
+
+                    <p v-else>
+                        <span>
+                            <p><i class="fa fa-check-double text-blue-500"></i></p>
+                        </span>
+                    </p>
                 </div>
             </div>
         </div>

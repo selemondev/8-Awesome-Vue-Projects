@@ -15,9 +15,11 @@ const router = useRouter();
 const authStore = useAuthStore();
 const loading = ref(false);
 const token = ref("");
+const error = ref("");
 watchEffect(() => {
     token.value = authStore.userData;
     loading.value = authStore.registerLoading;
+    error.value = authStore.registerError;
     if( token.value ) {
         router.push("/chat")
     }
@@ -38,7 +40,13 @@ const handleSubmit = async () => {
     const result = await v$.value.$validate();
     if( result ) {
         authStore.registerUser(formData.username, formData.email, formData.password)
-    }
+    };
+
+    
+    setTimeout(() => {
+        error.value = "";
+        loading.value = ""
+    }, 2000)
 }
 </script>
 <template>

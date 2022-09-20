@@ -35,7 +35,7 @@ watchEffect(() => {
     const unsub = onSnapshot(q, querySnapshot => {
         let userContacts = [];
         querySnapshot.forEach(doc => {
-            userContacts.push({ ...doc.data(), id: doc.id })
+            userContacts.push({...doc.data(), id: doc.id })
         });
         users.value = userContacts;
     });
@@ -60,7 +60,7 @@ const selectUser = async (userId, username, avatar, contact) => {
     onSnapshot(q, querySnapshot => {
         let messages = [];
         querySnapshot.forEach((doc) => {
-            messages.push({ ...doc.data(), id: doc.id });
+            messages.push({...doc.data(), id: doc.id });
         });
         messagesContainer.value = messages;
     });
@@ -126,7 +126,7 @@ const handleLogOut = () => {
 
 
                         <!-- Contacts -->
-                        <div class="bg-grey-lighter flex-1 overflow-auto" v-for="contact in users">
+                        <div class="bg-grey-lighter overflow-auto" v-for="contact in users">
                             <Sidebar :currentUserId="currentUser" :contact=contact :userId="contact.uid"
                                 :avatar="contact.avatar" :username="contact.username" @changeChat="selectUser" />
                         </div>
@@ -163,7 +163,7 @@ const handleLogOut = () => {
                         </div>
                     </div>
 
-                    <div v-else class="flex justify-center items-center">
+                    <div v-else class="grid place-items-center w-full">
                         <p>Select a chat</p>
                     </div>
                 </div>
