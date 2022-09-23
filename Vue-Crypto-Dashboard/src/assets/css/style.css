@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,7 +6,7 @@
 
 @layer base {
     body {
-        @apply min-h-screen w-full font-Poppins
+        @apply min-h-screen w-full font-Inter dark:bg-gray-900
      }
 }
 
@@ -24,6 +24,6 @@
     }
 
     .animation-hover {
-        @apply dark:hover:bg-gray-900 hover:bg-gray-600 hover:bg-opacity-10 rounded-full cursor-pointer w-[52px] h-[52px] transition duration-200 ease-in xl:px-4 xl:w-auto xl:h-auto xl:py-3;
+        @apply dark:hover:bg-gray-800 hover:bg-gray-600 hover:bg-opacity-10 rounded-full cursor-pointer w-[52px] h-[52px] transition duration-200 ease-in xl:px-4 xl:w-auto xl:h-auto xl:py-3;
     }
 }
