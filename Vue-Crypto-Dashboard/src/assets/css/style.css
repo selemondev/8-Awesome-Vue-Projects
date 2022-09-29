@@ -32,51 +32,97 @@
         @apply p-1 font-bold cursor-pointer text-white transition duration-200 ease-in
     }
 
-         .box1,
-         .box2,
-         .box3 {
-             margin: 5px;
-             width: 35px;
-             height: 3px;
-             background-color: #fff;
-             transition: all 400ms cubic-bezier(.84, .06, .52, 1.8);
-         }
-    
-         .sidebar {
-             height: 100%;
-             width: 250px;
-             top: -0.2%;
-             left: 0;
-             position: fixed;
-             z-index: 50;
-             background: #000;
-             display: inline-block;
-             list-style: none;
-             transition: all 0.5s;
-         }
-    
-         .sidebar li {
-             margin: 10px;
-         }
-    
-         .sidebar li a {
-             text-decoration: none;
-             font-size: 20px;
-         }
-    
-         .rotate .box1 {
-             transform: rotate(40deg) translate(8px, 3px);
-         }
-    
-         .rotate .box3 {
-             transform: rotate(-45deg) translate(8px, -5px);
-         }
-    
-         .rotate .box2 {
-             opacity: 0;
-         }
-         
-         .navbar-li-tag {
-            @apply cursor-pointer hover:text-blue-800 transition duration-200 ease-in
-         }
+    .active {
+        @apply text-blue-500
+    }
+
+    .box1,
+    .box2,
+    .box3 {
+        margin: 5px;
+        width: 35px;
+        height: 3px;
+        background-color: #fff;
+        transition: all 400ms cubic-bezier(.84, .06, .52, 1.8);
+    }
+
+    .sidebar {
+        height: 100%;
+        width: 250px;
+        top: -0.2%;
+        left: 0;
+        position: fixed;
+        z-index: 50;
+        background: #000;
+        display: inline-block;
+        list-style: none;
+        transition: all 0.5s;
+    }
+
+    .sidebar li {
+        margin: 10px;
+    }
+
+    .sidebar li a {
+        text-decoration: none;
+        font-size: 20px;
+    }
+
+    .rotate .box1 {
+        transform: rotate(40deg) translate(8px, 3px);
+    }
+
+    .rotate .box3 {
+        transform: rotate(-45deg) translate(8px, -5px);
+    }
+
+    .rotate .box2 {
+        opacity: 0;
+    }
+
+    .navbar-li-tag {
+        @apply cursor-pointer hover:text-blue-800 transition duration-200 ease-in
+    }
+
+    .animated-content {
+        animation: scrolling 20s linear infinite;
+    }
+
+    .animated-content:hover {
+        animation-play-state: paused;
+    }
+
+    .animated-content li {
+        width: 20%;
+    }
+
+    .content:before,
+    .content:after {
+        position: absolute;
+        top: 0;
+        width: 10rem;
+        height: 3em;
+        content: "";
+        z-index: 1;
+    }
+
+    .content:before {
+        left: 0;
+        background: linear-gradient(to right, #111 0%, transparent 100%);
+    }
+
+    .content:after {
+        right: 0;
+        background: linear-gradient(to left, #111 0%, transparent 100%);
+    }
+
+    @keyframes scrolling {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(-200%);
+        }
+    }
 }

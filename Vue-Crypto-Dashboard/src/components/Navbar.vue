@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Logo from "../assets/image/coinbase.png";
+import NavbarTop from "./Navbar-Top.vue";
 import { ref } from "vue";
 const mobileNav = ref(false);
 const rotate = () => {
@@ -10,6 +11,7 @@ const rotate = () => {
 <template>
     <div>
         <header>
+            <NavbarTop/>
             <nav class="flex-between p-4">
                 <div>
                     <h1 class="text-xl md:text-2xl">Coinbase</h1>
@@ -17,7 +19,7 @@ const rotate = () => {
 
                 <div class="hidden lg:block">
                     <ul class="inline-flex space-x-4">
-                        <li class="navbar-li-tag">Home</li>
+                        <li class="navbar-li-tag"><router-link to="/">Home</router-link></li>
                         <li class="navbar-li-tag">Coins</li>
                         <li class="navbar-li-tag">News</li>
                     </ul>
@@ -39,10 +41,6 @@ const rotate = () => {
                                 <h1 class="navbar-title">
                                     <router-link to="/">Coinbase</router-link>
                                 </h1>
-                            </div>
-
-                            <div>
-                                <XIcon @click="rotate" class="text-3xl text-white" />
                             </div>
                         </div>
                         <li class="mobile-li-tags">

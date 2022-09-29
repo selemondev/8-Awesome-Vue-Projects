@@ -9,9 +9,9 @@ const searchTerm = ref("")
 const fetchCoins = async () => {
     const url = "https://coinranking1.p.rapidapi.com/coins?limit=50";
     const response = await useFetch(url, options);
-    response.data.coins.forEach((coin:any) => {
+    response.data.coins.forEach((coin: any) => {
         coins.value.push(coin)
-    })
+    });
     console.log(coins.value)
 };
 fetchCoins();
@@ -44,18 +44,19 @@ function priceChanged(value: string) {
                 </svg>
             </div>
             <input type="search" id="default-search"
-                class="block py-2 pl-2 w-48 text-sm dark:text-black dark:placeholder-gray-500 rounded-md border border-gray-600 focus:ring-blue-500 focus:border-blue-500 focus:outline-none md:w-96"
+                class="block py-2 pl-2 w-48 text-sm text-black placeholder-gray-500 rounded-md border border-gray-600 focus:ring-blue-500 focus:border-blue-500 focus:outline-none md:w-96"
                 placeholder="Search" v-model="searchTerm">
         </div>
 
-        <div class=" w-[280px] overflow-x-auto text-white mx-6 rounded-md md:w-[750px]">
+        <div class="overflow-x-auto text-white mx-6 rounded-md">
             <table class="table-fixed cursor-pointer">
                 <thead>
                     <tr class="text-white text-sm text-left">
                         <th class="w-1/4 p-4">Name</th>
                         <th class="w-1/4 pl-6 md:pl-0">Price</th>
                         <th class="w-1/4 text-center md:text-start">1hr</th>
-                        <th class="w-1/4 mx-2">Market Cap</th>
+                        <th class="w-1/4 text-center mx-2 md:text-start">Market Cap</th>
+                        <th class="w-1/4 text-center">Listed At</th>
                     </tr>
                 </thead>
 
@@ -86,6 +87,10 @@ function priceChanged(value: string) {
                         </td>
                         <td class="mx-4 md:mx-2">
                             ${{ format(coin.marketCap )}}
+                        </td>
+
+                        <td class="mx-4 md:mx-2">
+                           {{ format(coin.listedAt) }}
                         </td>
                     </tr>
                 </tbody>
