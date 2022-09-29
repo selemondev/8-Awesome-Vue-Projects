@@ -5,6 +5,12 @@ const routes = [
         path: "/",
         name: "Home",
         component: Home
+    },
+    
+    {
+        path: "/coinView",
+        name: "CoinView",
+        component: import("../views/CoinView.vue")
     }
 ];
 

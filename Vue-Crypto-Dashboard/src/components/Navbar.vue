@@ -20,7 +20,11 @@ const rotate = () => {
                 <div class="hidden lg:block">
                     <ul class="inline-flex space-x-4">
                         <li class="navbar-li-tag"><router-link to="/">Home</router-link></li>
-                        <li class="navbar-li-tag">Coins</li>
+                        <li class="navbar-li-tag">
+                            <router-link to="/coinView">
+                                Coins
+                            </router-link>
+                        </li>
                         <li class="navbar-li-tag">News</li>
                     </ul>
                 </div>
@@ -47,7 +51,11 @@ const rotate = () => {
                             <a href="#">Home</a>
                         </li>
                         <li class="mobile-li-tags">
-                            <a href="#">Coins</a>
+                            <a href="#">
+                                <router-link to="/coinView">
+                                    Coins
+                                </router-link>
+                            </a>
                         </li>
 
                         <li class="mobile-li-tags">

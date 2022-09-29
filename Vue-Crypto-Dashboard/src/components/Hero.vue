@@ -19,7 +19,7 @@ import Hero_Bg from "../assets/image/hero-bg.png"
                         href="#table">Get Started</a></button>
                 <button
                     class="mt-6 text-white px-3 py-2 text-sm border border-blue-800 hover:bg-blue-600 transition duration-200 ease-in outline-none rounded-md md:text-base md:py-2.5 md:px-6">
-                    <router-link to="/coins">View All Coins</router-link>
+                    <router-link to="/coinView">View All Coins</router-link>
                 </button>
             </div>
         </div>
