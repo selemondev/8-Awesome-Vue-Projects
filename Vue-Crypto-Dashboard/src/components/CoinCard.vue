@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import millify from "millify";
+import useFormat from "../composables/useFormat";
+import usePriceChange from "../composables/usePriceChange";
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/vue/24/solid';
 interface Props {
     coinName: string,
@@ -8,18 +9,7 @@ interface Props {
     marketCap: string,
     change: string
 }
-const props = defineProps<Props>()
-const format = (value: number | string | any) => {
-    return millify(value)
-};
-
-function priceChanged(value: string | number | any) {
-    if (value.toString().includes("-")) {
-        return value;
-    } else {
-        return ""
-    }
-};
+const props = defineProps<Props>();
 </script>
 
 <template>
@@ -35,16 +25,16 @@ function priceChanged(value: string | number | any) {
                 </div>
         
                 <div>
-                    <h1>Price: ${{ format(props.price )}}</h1>
+                    <h1>Price: ${{ useFormat(props.price )}}</h1>
                 </div>
         
                 <div>
-                    <h2>Market Cap: ${{ format(props.marketCap )}}</h2>
+                    <h2>Market Cap: ${{ useFormat(props.marketCap )}}</h2>
                 </div>
         
                 <div class="flex items-center space-x-2">
-                    <span>1Hr: </span>
-                    <div v-if="priceChanged(props.change)" class="text-red-500 flex items-center">
+                    <span>24Hrs: </span>
+                    <div v-if="usePriceChange(props.change)" class="text-red-500 flex items-center">
                         <ChevronDownIcon class="mr-1 h-4 w-4 " />
                         {{ props.change }}%
                     </div>

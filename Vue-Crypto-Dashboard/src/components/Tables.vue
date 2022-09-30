@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import millify from "millify";
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/vue/24/solid';
+import useFormat from "../composables/useFormat";
+import usePriceChange from "../composables/usePriceChange";
 import { ref, computed } from "vue";
 import { useFetch, options } from "../utils/coinApi";
 import { ICoin } from "../Types/coins.interface";
@@ -12,25 +13,12 @@ const fetchCoins = async () => {
     response.data.coins.forEach((coin: any) => {
         coins.value.push(coin)
     });
-    console.log(coins.value)
 };
 fetchCoins();
-
-const format = (value: number | string | any) => {
-    return millify(value)
-};
 
 const coinFilter = computed(() => {
     return coins.value.filter((coin) => coin.name.toLowerCase().includes(searchTerm.value.toLowerCase()))
 });
-
-function priceChanged(value: string) {
-    if (value.includes("-")) {
-        return value;
-    } else {
-        return "";
-    }
-};
 </script>
 
 <template>
@@ -54,7 +42,7 @@ function priceChanged(value: string) {
                     <tr class="text-white text-sm text-left">
                         <th class="w-1/4 p-4">Name</th>
                         <th class="w-1/4 pl-6 md:pl-0">Price</th>
-                        <th class="w-1/4 text-center md:text-start">1hr</th>
+                        <th class="w-1/4 text-center md:text-start">24hrs</th>
                         <th class="w-1/4 text-center mx-2 md:text-start">Market Cap</th>
                         <th class="w-1/4 text-center">Listed At</th>
                     </tr>
@@ -72,10 +60,10 @@ function priceChanged(value: string) {
                             </p>
                         </td>
                         <td class="font-bold px-4 md:px-0">
-                            ${{ format(coin.price) }}
+                            ${{ useFormat(coin.price) }}
                         </td>
                         <td class="px-4 font-bold md:px-0">
-                            <div v-if="priceChanged(coin.change)"
+                            <div v-if="usePriceChange(coin.change)"
                                 class="text-red-500 flex items-center">
                                 <ChevronDownIcon class="mr-1 h-4 w-4 " />
                                 {{ coin.change }}%
@@ -86,11 +74,11 @@ function priceChanged(value: string) {
                             </div>
                         </td>
                         <td class="mx-4 md:mx-2">
-                            ${{ format(coin.marketCap )}}
+                            ${{ useFormat(coin.marketCap )}}
                         </td>
 
                         <td class="mx-4 md:mx-2">
-                           {{ format(coin.listedAt) }}
+                           {{ useFormat(coin.listedAt) }}
                         </td>
                     </tr>
                 </tbody>
