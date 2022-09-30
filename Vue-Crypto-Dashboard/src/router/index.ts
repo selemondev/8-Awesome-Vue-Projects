@@ -10,7 +10,19 @@ const routes = [
     {
         path: "/coinView",
         name: "CoinView",
-        component: import("../views/CoinView.vue")
+        component: () => import("../views/CoinView.vue")
+    },
+
+    {
+        path: "/newsView",
+        name: "NewsView",
+        component: () => import("../views/NewsView.vue")
+    },
+
+    {
+        path: "/coin/:coinId",
+        name: "Coin",
+        component: () => import("../views/Coin.vue")
     }
 ];
 

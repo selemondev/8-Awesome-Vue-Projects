@@ -25,7 +25,11 @@ const rotate = () => {
                                 Coins
                             </router-link>
                         </li>
-                        <li class="navbar-li-tag">News</li>
+                        <li class="navbar-li-tag">
+                            <router-link to="/newsView">
+                                News
+                            </router-link>
+                        </li>
                     </ul>
                 </div>
 
@@ -59,7 +63,11 @@ const rotate = () => {
                         </li>
 
                         <li class="mobile-li-tags">
-                            <a href="#">News</a>
+                            <a href="#">
+                                <router-link to="/newsView">
+                                    News
+                                </router-link>
+                            </a>
                         </li>
                     </ul>
                 </transition>

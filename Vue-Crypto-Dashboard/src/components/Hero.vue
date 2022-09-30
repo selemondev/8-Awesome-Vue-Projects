@@ -16,7 +16,7 @@ import Hero_Bg from "../assets/image/hero-bg.png"
             <div class="flex flex-col justify-center space-x-0  md:flex-row md:space-x-4 md:justify-start">
                 <button
                     class="mt-6 text-white px-3 py-2 text-sm bg-blue-600 hover:bg-blue-700 outline-none rounded-md md:text-base md:py-2.5 md:px-6"><a
-                        href="#table">Get Started</a></button>
+                        href="#table" v-smooth-scroll="{  duration: 400 }">Get Started</a></button>
                 <button
                     class="mt-6 text-white px-3 py-2 text-sm border border-blue-800 hover:bg-blue-600 transition duration-200 ease-in outline-none rounded-md md:text-base md:py-2.5 md:px-6">
                     <router-link to="/coinView">View All Coins</router-link>
