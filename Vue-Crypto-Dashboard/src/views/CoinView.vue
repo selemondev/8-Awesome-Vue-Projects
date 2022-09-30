@@ -18,7 +18,7 @@ const fetchCoins = async () => {
 fetchCoins();
 </script>
 <template>
-    <div class="flex-center flex-wrap">
+    <div class="flex-center flex-wrap md:flex-between">
         <div v-if="loading" class="grid-center w-full mt-48 md:mt-52">
             <Loader />
         </div>
