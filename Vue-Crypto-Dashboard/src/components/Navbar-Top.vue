@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import millify from "millify";
+import useFormat from "../composables/useFormat";
+import usePriceChange from "../composables/usePriceChange";
 import { ChevronUpIcon, ChevronDownIcon } from "@heroicons/vue/24/solid";
 import { ref } from "vue";
 import { ICoin } from "../Types/coins.interface";
@@ -13,18 +14,6 @@ const fetchCoins = async () => {
     })
 }
 fetchCoins();
-
-function priceChanged(value: string) {
-    if (value.includes("-")) {
-        return value;
-    } else {
-        return "";
-    }
-};
-
-const format = (value: number | string | any) => {
-    return millify(value)
-};
 </script>
 <template>
     <div class="content w-full h-14 overflow-hidden bg-black relative">
@@ -44,16 +33,16 @@ const format = (value: number | string | any) => {
                     </div>
                     <div>
                         <p class="font-bold text-xs lg:text-base flex justify-center ">
-                            ${{  format(coin.price) }}
+                            ${{  useFormat(coin.price) }}
                         </p>
                         <p class="font-bold text-xs text-red-400 flex justify-end items-center "
-                            v-if="priceChanged(coin.change)">
+                            v-if="usePriceChange(coin.change)">
                             <ChevronDownIcon class="mr-1 h-4 w-4" />
-                            {{ format(coin.change) }}%
+                            {{ useFormat(coin.change) }}%
                         </p>
                         <p v-else class="font-bold text-xs text-green-400 flex justify-end items-center ">
                             <ChevronUpIcon class="mr-1 h-4 w-4 " />
-                            {{ format(coin.change) }}%
+                            {{ useFormat(coin.change) }}%
                         </p>
                     </div>
                 </div>

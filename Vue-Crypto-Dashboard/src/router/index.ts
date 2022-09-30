@@ -17,12 +17,6 @@ const routes = [
         path: "/newsView",
         name: "NewsView",
         component: () => import("../views/NewsView.vue")
-    },
-
-    {
-        path: "/coin/:coinId",
-        name: "Coin",
-        component: () => import("../views/Coin.vue")
     }
 ];
 
