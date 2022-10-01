@@ -55,7 +55,6 @@ const handleSubmit = async () => {
             });
             loading.value = false;
             selectedImage.value = "";
-            router.push("/chat")
         } catch (error) {
             console.log(error.message)
         }
@@ -66,6 +65,8 @@ const handleSubmit = async () => {
             error.value = ""
         }, 2000)
     };
+
+    router.push("/chat")
 }
 </script>
 <template>

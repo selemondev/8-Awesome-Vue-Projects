@@ -2,6 +2,7 @@
 import { onSnapshot, doc } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 import { ref, watchEffect } from 'vue';
+import Placeholder from "../assets/Placeholder.png";
 const lastMessage = ref([]);
 const props = defineProps({
     currentUserId: {
@@ -21,19 +22,28 @@ const props = defineProps({
     }
 });
 
-watchEffect(() => {
+const stopRunning = watchEffect(() => {
     const id = props.currentUserId > props.userId ? `${props.currentUserId + props.userId}` : `${props.userId + props.currentUserId}`;
     let unsubscribe = onSnapshot(doc(db, "lastMessage", id), (doc) => {
-        lastMessage.value = {...doc.data(), id: doc.id };
+        lastMessage.value = { ...doc.data(), id: doc.id };
     });
-    return () => unsubscribe();
-})
+    return () => unsubscribe()
+});
+stopRunning()
+
+
+
 </script>
 <template>
     <div @click="$emit('changeChat', props.id, props.username, props.avatar, props.contact)"
         class="space-x-3 flex-center bg-grey-light cursor-pointer my-2 hover:bg-gray-200/70 dark:hover:bg-gray-800 md:px-2 md:py-1">
         <div v-if="props.avatar">
-            <img class="h-12 w-12 rounded-full m-2 lg:m-0" :src="props.avatar" :alt="props.username" />
+            <img v-if="props.avatar" class="h-12 w-12 rounded-full m-2 lg:m-0" :src="props.avatar"
+                :alt="props.username" />
+        </div>
+
+        <div v-else>
+            <img class="h-12 w-12 rounded-full m-2 lg:m-0" :src="Placeholder" :alt="props.username" />
         </div>
 
         <div class="ml-4 flex-1 py-4 md:border-b md:border-grey-lighter dark:border-b dark:border-gray-800 lg:block">
@@ -54,7 +64,7 @@ watchEffect(() => {
                         <p class="text-sm dark:text-gray-300"> {{ lastMessage?.text }}</p>
                     </div>
                     <p v-if="lastMessage?.unread && lastMessage?.from !== currentUserId">
-                        <p class="w-4 h-4 pt-.5 text-white bg-green-500 rounded-full text-center text-xs">1</p>
+                    <p class="w-4 h-4 pt-.5 text-white bg-green-500 rounded-full text-center text-xs">1</p>
                     </p>
 
                     <p v-else>

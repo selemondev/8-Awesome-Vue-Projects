@@ -1,4 +1,5 @@
 <script setup>
+import Placeholder from "../assets/Placeholder.png";
 const props = defineProps({
     chatAvatar: {
         type: String,
@@ -18,6 +19,10 @@ const props = defineProps({
     <div class="flex items-center">
         <div v-if="props.chatAvatar">
             <img class="w-10 h-10 rounded-full" :src="props.chatAvatar" />
+        </div>
+
+        <div v-else>
+            <img class="w-10 h-10 rounded-full" :src="Placeholder" />
         </div>
         <div class="ml-4">
             <p class="text-grey-darkest dark:text-white">
