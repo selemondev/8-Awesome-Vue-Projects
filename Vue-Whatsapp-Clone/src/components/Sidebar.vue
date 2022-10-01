@@ -27,12 +27,9 @@ const stopRunning = watchEffect(() => {
     let unsubscribe = onSnapshot(doc(db, "lastMessage", id), (doc) => {
         lastMessage.value = { ...doc.data(), id: doc.id };
     });
-    return () => unsubscribe()
+    return () => unsubscribe();
 });
 stopRunning()
-
-
-
 </script>
 <template>
     <div @click="$emit('changeChat', props.id, props.username, props.avatar, props.contact)"
