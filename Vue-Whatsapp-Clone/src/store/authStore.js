@@ -66,9 +66,6 @@ export const useAuthStore = defineStore({
       await signOut(auth);
       localStorage.removeItem("user");
       this.userData = null;
-      await updateDoc(doc(db, "users", currentUser), {
-            online: false,
-      });
     },
   },
 });

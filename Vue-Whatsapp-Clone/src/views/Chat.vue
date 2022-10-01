@@ -18,6 +18,7 @@ import {
     doc,
     getDoc,
     updateDoc,
+    Timestamp
 } from "firebase/firestore";
 import { watchEffect, ref, computed } from "vue";
 import { useRouter } from "vue-router";
@@ -86,6 +87,10 @@ const filteredUsers = computed(() => {
 
 
 const handleLogOut = async () => {
+    await updateDoc(doc(db, "users", currentUser), {
+        online: false,
+        createdAt: Timestamp.fromDate(new Date()),
+    });
     authStore.logOut();
     router.push("/")
 }
