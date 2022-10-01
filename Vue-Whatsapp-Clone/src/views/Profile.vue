@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar.vue";
 import Placeholder from "../assets/Placeholder.png";
 import { auth, storage, db } from "../firebaseConfig";
 import { getDoc, doc, updateDoc } from "firebase/firestore";
-import { getDownloadURL, ref as storageRef, uploadBytes } from "firebase/storage";
+import { deleteObject, getDownloadURL, ref as storageRef, uploadBytes } from "firebase/storage";
 import { ref, reactive, watchEffect } from "vue";
 import { useRouter } from "vue-router";
 import { CameraIcon, PencilIcon } from "@heroicons/vue/24/outline";
@@ -33,8 +33,13 @@ const formData = reactive({
     bio: "",
 });
 const handleSubmit = async () => {
+
     if (selectedImage.value) {
         try {
+            // if an image already exists, we delete the previous image so as to upload the new one
+            if (user.avatarPath) {
+                await deleteObject(storageRef(storage, user.avatarPath))
+            };
             loading.value = true;
             let sentImage;
             const imageReference = storageRef(storage, `images/${new Date().getTime()} - ${selectedImage.name}`);
@@ -54,13 +59,14 @@ const handleSubmit = async () => {
         } catch (error) {
             console.log(error.message)
         }
-    } else {
+    }
+    else {
         error.value = "Choose your profile image";
         setTimeout(() => {
             error.value = ""
         }, 2000)
-    }
-};
+    };
+}
 </script>
 <template>
     <div>
@@ -77,9 +83,10 @@ const handleSubmit = async () => {
                             class='opacity-0 group-hover:opacity-100 duration-300 absolute left-0 top-50 right-0 z-10 flex justify-center items-end text-xl text-black'>
                             <CameraIcon class="w-6 h-6" />
                         </label>
-                        <img v-if="blob" :src="blob" alt="profile-placeholder" class='h-32 w-32 rounded-full' />
-                        <img v-else :src="[currentUser.avatar ? currentUser.avatar : Placeholder]"
-                            alt="profile-placeholder" class='h-32 w-32 rounded-full' />
+                        <img v-if="blob" :src="blob" alt="blob" class='h-32 w-32 rounded-full' />
+                        <img v-if="currentUser.avatar" :src="currentUser.avatar"
+                            alt="avatar" class='h-32 w-32 rounded-full' />
+                        <img v-if="!currentUser.avatar && !blob" :src="Placeholder" alt="avatar" class='h-32 w-32 rounded-full' />
                         <input type="file" @change="fileUpload" hidden name="fileUpload" id="fileUpload"
                             accept="image/*" />
                     </div>
@@ -108,8 +115,8 @@ const handleSubmit = async () => {
                         </div>
                     </div>
 
-                    <div class="my-3">
-                        <p class="error">{{ error }}</p>
+                    <div class="my-2 grid-center">
+                        <p class="error" v-if="!currentUser.avatar">{{ error }}</p>
                     </div>
 
                     <div>
