@@ -15,7 +15,7 @@ const { data } = await useAsyncData("article", () => queryContent("blog").find()
 <template>
   <div>
     <div class="text-center my-6">
-      <h1 class="text-4xl text-gray-400">Latest Articles</h1>
+      <h1 class="text-4xl text-gray-400">Latest Article</h1>
     </div>
 
     <div class="m-6">

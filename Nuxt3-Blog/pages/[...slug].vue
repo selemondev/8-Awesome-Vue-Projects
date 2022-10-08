@@ -1,30 +1,25 @@
 <script setup>
 const { path } = useRoute();
-const { data } = useAsyncData(`content-${path}`, async () => {
-    let article = queryContent().where({ _path: path }).sort({ publishedAt: -1 }).findOne();
-    return {
-        article: await article,
-    };
-});
+const { data } = useAsyncData(`content-${path}`, async () => queryContent().where({ _path: path }).sort({ publishedAt: -1 }).findOne());
 </script>
 <template>
     <div class="max-w-2xl px-4 py-10 bg-gray-900 m-auto sm:px-8 sm:shadow sm:rounded">
-        <div class="grid-layout" v-if="data.article">
-            <img :src="data.article.image" :alt="data.article.title" class="w-96 h-64">
+        <div class="grid-layout" v-if="data">
+            <img :src="data.image" :alt="data.title" class="w-96 h-64">
         </div>
 
         <div class="space-y-6 pb-6">
 
             <div class="text-center pt-6">
-                <h1 class="font-bold text-white text-xl font-Roboto md:text-2xl">{{data.article.title}}</h1>
+                <h1 class="font-bold text-white text-xl font-Roboto md:text-2xl">{{data.title}}</h1>
             </div>
 
             <div>
-                <p class="text-gray-300">{{data.article.description}}</p>
+                <p class="text-gray-300">{{data.description}}</p>
             </div>
 
             <div class="w-full bg-gray-800">
-                <Toc :links="data.article.body.toc.links" />
+                <Toc :links="data.body.toc.links" />
             </div>
         </div>
             <!-- Fetch and display the Markdown document from current path -->
