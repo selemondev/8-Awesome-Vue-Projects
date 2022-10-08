@@ -8,7 +8,11 @@ module.exports = {
     "./nuxt.config.{js,ts}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        "Roboto": "Roboto"
+      }
+    },
   },
   plugins: [require("@tailwindcss/typography"), require("@tailwindcss/line-clamp")],
 };
