@@ -505,6 +505,11 @@
   "resolved" "https://registry.npmjs.org/@types/node/-/node-18.7.13.tgz"
   "version" "18.7.13"
 
+"@types/web-bluetooth@^0.0.15":
+  "integrity" "sha512-w7hEHXnPMEZ+4nGKl/KDRVpxkwYxYExuHOYXyzIzCDzEZ9ZCGMAewulr9IqJu2LR4N37fcnb1XVeuZ09qgOxhA=="
+  "resolved" "https://registry.npmjs.org/@types/web-bluetooth/-/web-bluetooth-0.0.15.tgz"
+  "version" "0.0.15"
+
 "@vitejs/plugin-vue@^3.0.3":
   "integrity" "sha512-U4zNBlz9mg+TA+i+5QPc3N5lQvdUXENZLO2h0Wdzp56gI1MWhqJOv+6R+d4kOzoaSSq6TnGPBdZAXKOe4lXy6g=="
   "resolved" "https://registry.npmjs.org/@vitejs/plugin-vue/-/plugin-vue-3.0.3.tgz"
@@ -618,6 +623,28 @@
   "version" "2.0.0-alpha.31"
   dependencies:
     "vue-demi" "^0.13.4"
+
+"@vueuse/core@^9.3.0":
+  "integrity" "sha512-64Rna8IQDWpdrJxgitDg7yv1yTp41ZmvV8zlLEylK4QQLWAhz1OFGZDPZ8bU4lwcGgbEJ2sGi2jrdNh4LttUSQ=="
+  "resolved" "https://registry.npmjs.org/@vueuse/core/-/core-9.3.0.tgz"
+  "version" "9.3.0"
+  dependencies:
+    "@types/web-bluetooth" "^0.0.15"
+    "@vueuse/metadata" "9.3.0"
+    "@vueuse/shared" "9.3.0"
+    "vue-demi" "*"
+
+"@vueuse/metadata@9.3.0":
+  "integrity" "sha512-GnnfjbzIPJIh9ngL9s9oGU1+Hx/h5/KFqTfJykzh/1xjaHkedV9g0MASpdmPZIP+ynNhKAcEfA6g5i8KXwtoMA=="
+  "resolved" "https://registry.npmjs.org/@vueuse/metadata/-/metadata-9.3.0.tgz"
+  "version" "9.3.0"
+
+"@vueuse/shared@9.3.0":
+  "integrity" "sha512-caGUWLY0DpPC6l31KxeUy6vPVNA0yKxx81jFYLoMpyP6cF84FG5Dkf69DfSUqL57wX8JcUkJDMnQaQIZPWFEQQ=="
+  "resolved" "https://registry.npmjs.org/@vueuse/shared/-/shared-9.3.0.tgz"
+  "version" "9.3.0"
+  dependencies:
+    "vue-demi" "*"
 
 "acorn-node@^1.8.2":
   "integrity" "sha512-8mt+fslDufLYntIoPAaIMUe/lrbrehIiwmR3t2k9LljIzoigEPF27eLk2hy8zSGzmR/ogr7zbRKINMo1u0yh5A=="

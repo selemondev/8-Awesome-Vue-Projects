@@ -54,7 +54,7 @@ stopRunning()
                     </span>
                 </p>
             </div>
-            <div class="hidden mt-1 lg:block">
+            <div class="hidden mt-1 md:block">
                 <div v-if="lastMessage?.text" class="flex-between">
                     <div class="flex-center space-x-2">
                         <p v-if="lastMessage.from === currentUserId" class="text-gray-200">Me: </p>
