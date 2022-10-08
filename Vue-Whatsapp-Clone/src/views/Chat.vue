@@ -110,7 +110,7 @@ const handleLogOut = async () => {
                                 <img v-else class="w-10 h-10 rounded-full" :src="Placeholder" alt="Avatar" />
                             </div>
 
-                            <div class="hidden lg:flex">
+                            <div class="hidden md:flex">
                                 <ArrowLeftOnRectangleIcon @click="handleLogOut()"
                                     class="w-6 h-6 cursor-pointer text-white" />
                             </div>
