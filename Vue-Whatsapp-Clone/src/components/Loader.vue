@@ -1,6 +1,3 @@
-<script setup>
-
-</script>
 <template>
     <div>
         <div role="status" class="text-center">

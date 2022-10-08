@@ -5,7 +5,7 @@
 
 @layer base {
     body {
-        @apply min-h-screen w-full font-Roboto dark:bg-gray-900
+        @apply min-h-screen w-full font-Roboto bg-gray-900
     }
 }
 
@@ -31,11 +31,11 @@
     }
 
     .form-label {
-        @apply block mt-2 dark:text-white
+        @apply block mt-2 text-white
     }
 
     .form-input {
-        @apply appearance-none py-2 px-2 w-full border border-gray-300 mt-2 rounded-md focus:outline-none focus:ring-1 focus:ring-green-500 dark:bg-gray-400/30 dark:text-white dark:placeholder-gray-400
+        @apply appearance-none py-2 px-2 w-full border border-gray-500 mt-2 rounded-md focus:outline-none focus:ring-1 focus:ring-green-500 bg-gray-400/30 text-white placeholder-gray-400
     }
 
     .form-btn {
@@ -47,6 +47,6 @@
     }
 
     .input-style {
-        @apply py-1.5 px-4 w-full rounded-full bg-gray-100 dark:bg-gray-400/30 dark:text-white dark:placeholder-gray-400
+        @apply py-1.5 px-4 w-full rounded-full bg-gray-400/30 focus:outline-none focus:ring-1 focus:ring-gray-400 text-white placeholder-gray-400 md:py-2.5
     }
 }

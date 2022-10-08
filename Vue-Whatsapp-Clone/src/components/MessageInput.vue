@@ -87,9 +87,9 @@ const handleSubmit = async () => {
         <form @submit.prevent="handleSubmit" class="bg-grey-lighter px-4 flex items-center"
             :class="[ selectedImage ? 'py-0' : 'py-4']">
             <div class="flex-center space-x-1 cursor-pointer md:space-x-2">
-                <FaceSmileIcon @click="showEmojis = !showEmojis" class="w-4 h-4 md:w-6 md:h-6 dark:text-white" />
+                <FaceSmileIcon @click="showEmojis = !showEmojis" class="w-4 h-4 text-white md:w-6 md:h-6" />
                 <label for="fileUpload">
-                    <PaperClipIcon class="w-4 h-4 md:w-6 md:h-6 dark:text-white" />
+                    <PaperClipIcon class="w-4 h-4 text-white md:w-6 md:h-6" />
                     <input type="file" @change="fileUpload" hidden name="fileUpload" id="fileUpload" accept="image/*" />
                 </label>
             </div>
