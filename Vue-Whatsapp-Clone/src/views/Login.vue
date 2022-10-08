@@ -50,7 +50,7 @@ const handleSubmit = async () => {
 <template>
     <div class="grid-center">
         <div class="max-w-sm w-72 mt-6 md:w-80 md:mt-10">
-            <form @submit.prevent="handleSubmit" class="bg-white w-full border border-gray-200 shadow-md rounded-md py-4 px-6 dark:bg-gray-800/75 dark:border dark:border-gray-900">
+            <form @submit.prevent="handleSubmit" class="w-full shadow-md rounded-md py-4 px-6 bg-gray-800/75 border border-gray-900">
                 <div class="grid-center">
                     <img :src="Logo" alt="Logo" class="w-10 h-10">
                 </div>
@@ -78,7 +78,7 @@ const handleSubmit = async () => {
                 </div>
 
                 <div class="pb-2">
-                    <p class="dark:text-white">Don't have an account? <span class="text-green-500 hover:text-green-600 hover:font-bold cursor-pointer"><router-link to="/register">Register</router-link></span></p>
+                    <p class="text-white">Don't have an account? <span class="text-green-500 hover:text-green-600 hover:font-bold cursor-pointer"><router-link to="/register">Register</router-link></span></p>
                 </div>
 
                 <div>
