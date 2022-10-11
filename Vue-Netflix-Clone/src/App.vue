@@ -1,13 +1,11 @@
-<script setup>
-</script>
 <template>
   <div>
-    <router-view v-slot="{ Component }">
-      <transition name="slide-fade" mode="out-in">
-        <component :is="Component" />
-      </transition>
-    </router-view>
-  </div>
+      <router-view v-slot="{ Component }">
+        <transition name="slide-fade" mode="out-in">
+          <component :is="Component" />
+        </transition>
+      </router-view>
+    </div>
 </template>
 
 <style scoped>
@@ -25,5 +23,4 @@
   transform: translateX(-10px);
   opacity: 0;
 }
-
 </style>
