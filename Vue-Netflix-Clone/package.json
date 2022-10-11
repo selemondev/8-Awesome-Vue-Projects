@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview --port 4173"
+    "preview": "vite preview --port 4173",
+    "test:unit": "vitest --environment jsdom"
   },
   "dependencies": {
     "@heroicons/vue": "^2.0.4",
@@ -14,6 +15,7 @@
     "@vuelidate/validators": "^2.0.0-alpha.31",
     "@vueuse/core": "^9.1.1",
     "axios": "^0.27.2",
+    "jsdom": "^20.0.1",
     "movie-trailer": "^2.1.0",
     "pinia": "^2.0.17",
     "tailwind-scrollbar-hide": "^1.1.7",
@@ -23,10 +25,12 @@
     "youtube-vue3": "^0.1.15"
   },
   "devDependencies": {
+    "@testing-library/vue": "^6.6.1",
     "@vitejs/plugin-vue": "^3.0.1",
     "autoprefixer": "^10.4.8",
     "postcss": "^8.4.16",
     "tailwindcss": "^3.1.8",
-    "vite": "^3.0.4"
+    "vite": "^3.0.4",
+    "vitest": "^0.24.1"
   }
 }
