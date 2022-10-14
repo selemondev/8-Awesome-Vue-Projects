@@ -11,10 +11,7 @@ export const useAuthStore = defineStore({
     logOutLoading: false,
     logOutErrorMsg: "",
   }),
-
-  getters: {
-  },
-
+  
   actions: {
     async registerUser(email, password) {
       this.registerLoading = true;
@@ -50,7 +47,7 @@ export const useAuthStore = defineStore({
       this.logOutLoading = false;
       localStorage.removeItem("user");
       this.logOutErrorMsg = error?.message;
-    }
+    },
   }
 });
 

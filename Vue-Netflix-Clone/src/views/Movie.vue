@@ -164,7 +164,7 @@ export default defineComponent({
         </div>
         <div class="grid place-items-start pt-14 md:pt-10">
             <div
-                class=" md:w-[800px] bg-black rounded-md md:ml-2 bg-opacity-20 backdrop-blur-xl w-80 h-96 pt-10 flex md:justify-center justify-around items-center">
+                class=" bg-black rounded-md md:ml-2 bg-opacity-20 backdrop-blur-xl w-80 h-96 pt-10 flex justify-around items-center md:w-[800px] md:justify-center">
                 <div class="md:w-72 w-32">
                     <img :src="`${baseURL}${movie?.poster_path}`" :alt="`${movie.title}`" class="w-62 h-72 md:ml-2">
                 </div>
