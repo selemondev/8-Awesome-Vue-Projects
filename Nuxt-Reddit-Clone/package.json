@@ -1,0 +1,23 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@nuxtjs/tailwindcss": "^5.3.5",
+    "autoprefixer": "^10.4.12",
+    "nuxt": "3.0.0-rc.11",
+    "postcss": "^8.4.18",
+    "tailwindcss": "^3.1.8"
+  },
+  "dependencies": {
+    "@vuelidate/core": "^2.0.0",
+    "@vuelidate/validators": "^2.0.0",
+    "firebase": "^9.12.1",
+    "vue-toastification": "^2.0.0-rc.5"
+  }
+}
