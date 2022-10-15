@@ -1,5 +1,6 @@
 <template>
     <div>
-        <LoginAuthForm/>
+        <Navbar/>
+        <slot/>
     </div>
 </template>
