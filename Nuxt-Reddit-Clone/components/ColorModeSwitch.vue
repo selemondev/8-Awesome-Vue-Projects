@@ -6,7 +6,7 @@ const changeTheme = () => {
 </script>
 <template>
     <div>
-        <button @click="changeTheme()">
+        <button @click="changeTheme()" class="py-2 px-3 bg-gray-100 rounded-md dark:bg-gray-800">
             <ColorScheme placeholder="...">
                 <Icon name="material-symbols:wb-sunny-outline-rounded" v-if="colorMode.value === 'dark'"
                     class="w-5 h-5 dark:text-white" />
