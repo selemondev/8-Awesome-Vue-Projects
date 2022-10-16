@@ -3,6 +3,6 @@ const firebaseUser = useFirebaseUser()
 </script>
 <template>
    <div>
-      <pre>{{ firebaseUser }}</pre>
+      <!-- <pre>{{ firebaseUser }}</pre> -->
    </div>
 </template>
