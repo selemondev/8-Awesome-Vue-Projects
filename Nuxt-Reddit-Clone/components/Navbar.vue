@@ -7,7 +7,9 @@
 
             <div>
                 <button class="navbar-button">
-                    Sign In
+                    <NuxtLink to="/">
+                        Sign In
+                    </NuxtLink>
                 </button>
             </div>
         </nav>

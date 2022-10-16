@@ -39,24 +39,29 @@ const handleSubmit = async () => {
                     <Icon name="logos:reddit-icon" class="text-4xl" />
                 </div>
 
-                <div class="pb-6">
+                <div :class="[ v$.username.$error ? 'pb-0' : 'pb-6']">
                     <label for="Username" class="form-username">Username</label>
                     <input type="text" placeholder="Username" class="form-input" v-model="formData.username">
+                    <p class="error" v-if="v$.username.$error">{{ v$.username.$errors[0].$message}}</p>
                 </div>
 
-                <div class="pb-6">
+                <div :class="[v$.email.$error ? 'pb-0' : 'pb-6']">
                     <label for="Email" class="form-username">Email</label>
                     <input type="text" placeholder="Email" class="form-input" v-model="formData.email">
+                    <p class="error" v-if="v$.email.$error">{{ v$.email.$errors[0].$message}}</p>
                 </div>
 
-                <div class="pb-6">
+                <div :class="[ v$.password.$error ? 'pb-0' : 'pb-6']">
                     <label for="Password" class="form-username">Password</label>
                     <input type="password" placeholder="Password" class="form-input" v-model="formData.password">
+                    <p class="error" v-if="v$.password.$error">{{ v$.password.$errors[0].$message}}</p>
                 </div>
 
-                <div class="pb-6">
+                <div :class="[v$.confirmPassword.$error ? 'pb-0' : 'pb-6']">
                     <label for="confirmPassword" class="form-username">ConfirmPassword</label>
-                    <input type="password" placeholder="ConfirmPassword" class="form-input" v-model="formData.confirmPassword">
+                    <input type="password" placeholder="ConfirmPassword" class="form-input"
+                        v-model="formData.confirmPassword">
+                    <p class="error" v-if="v$.confirmPassword.$error">{{ v$.confirmPassword.$errors[0].$message}}</p>
                 </div>
 
                 <div class="pb-4">

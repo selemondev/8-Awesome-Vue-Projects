@@ -31,29 +31,36 @@ const handleSubmit = async () => {
 </script>
 <template>
     <div class="grid-center">
-        <div class="max-w-sm w-72 mt-8 py-2 rounded-md sm:w-80 md:py-0 md:mt-14">
+        <div class="max-w-sm w-72 mt-8 py-2 rounded-md sm:w-80 md:py-0 md:mt-10">
             <form @submit.prevent="handleSubmit" class="w-full bg-white py-4 px-6 rounded-md">
                 <div class="grid-center py-1">
                     <Icon name="logos:reddit-icon" class="text-4xl" />
                 </div>
 
-                <div class="pb-6">
+                <div :class="[ v$.username.$error ? 'pb-0' : 'pb-6']">
                     <label for="Username" class="form-username">Username</label>
                     <input type="text" placeholder="Username" class="form-input" v-model="formData.username">
+                    <p class="error" v-if="v$.username.$error">{{ v$.username.$errors[0].$message}}</p>
                 </div>
 
-                <div class="pb-6">
+                <div :class="[v$.email.$error ? 'pb-0' : 'pb-6']">
                     <label for="Email" class="form-username">Email</label>
                     <input type="text" placeholder="Email" class="form-input" v-model="formData.email">
+                    <p class="error" v-if="v$.email.$error">{{ v$.email.$errors[0].$message}}</p>
                 </div>
 
-                <div class="pb-6">
+                <div :class="[v$.password.$error ? 'pb-0' : 'pb-3']">
                     <label for="Password" class="form-username">Password</label>
                     <input type="password" placeholder="Password" class="form-input" v-model="formData.password">
+                    <p class="error" v-if="v$.password.$error">{{ v$.password.$errors[0].$message}}</p>
                 </div>
 
-                <div class="pb-2">
-                    <p>Not a redditor yet? <span class="text-blue-500 hover:text-blue-600 font-bold">Register</span></p>
+                <div class="mt-1 mb-3">
+                    <p>Not a redditor yet? <span class="text-blue-500 hover:text-blue-600 font-bold">
+                        <NuxtLink to="/register">
+                            Register
+                        </NuxtLink>
+                    </span></p>
                 </div>
 
                 <div class="pb-4">
