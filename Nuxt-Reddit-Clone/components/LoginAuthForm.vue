@@ -1,6 +1,8 @@
 <script setup>
 import useVuelidate from "@vuelidate/core";
 import { required, helpers, minLength, email } from "@vuelidate/validators";
+import { loginUser } from "../composables/useFirebaseAuth";
+const loading = ref(false);
 const formData = reactive({
     username: "",
     email: "",
@@ -20,14 +22,16 @@ const v$ = useVuelidate(rules, formData);
 const handleSubmit = async () => {
     const result = await v$.value.$validate();
     if (result) {
-
+        loading.value = true;
+        await loginUser(formData.email, formData.password);
+        loading.value = false;
     }
 };
 
 </script>
 <template>
     <div class="grid-center">
-        <div class="max-w-sm w-72 mt-8 py-2 rounded-md sm:w-80 md:py-0 md:mt-6">
+        <div class="max-w-sm w-72 mt-8 py-2 rounded-md sm:w-80 md:py-0 md:mt-14">
             <form @submit.prevent="handleSubmit" class="w-full bg-white py-4 px-6 rounded-md">
                 <div class="grid-center py-1">
                     <Icon name="logos:reddit-icon" class="text-4xl" />
