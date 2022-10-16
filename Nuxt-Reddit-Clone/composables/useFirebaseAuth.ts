@@ -25,7 +25,7 @@ export const initUser = async () => {
     const firebaseUser = useFirebaseUser();
     const loadingState = useLoadingState();
     const auth = getAuth();
-    firebaseUser.value = auth.currentUser;
+    firebaseUser.value = auth?.currentUser;
     const userCookie: any = useCookie("userCookie");
     const router = useRouter();
     onAuthStateChanged(auth, (user) => {
@@ -37,6 +37,11 @@ export const initUser = async () => {
         loadingState.value = false;
         firebaseUser.value = user;
         userCookie.value = user;
+
+        $fetch("/api/auth", {
+            method: "POST",
+            body: { user }
+        })
     });
 };
 
