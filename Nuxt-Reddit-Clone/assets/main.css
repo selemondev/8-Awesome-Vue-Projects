@@ -37,4 +37,8 @@
     .form-input {
         @apply appearance-none py-2 px-2 w-full mt-2 rounded-md bg-gray-400/10 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-orange-600
     }
+
+    .error {
+        @apply text-red-500 font-bold py-1
+    }
 }
