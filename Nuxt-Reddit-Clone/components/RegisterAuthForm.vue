@@ -30,6 +30,10 @@ const handleSubmit = async () => {
     }
 };
 
+const handleGoogleOauth = () => {
+    googleOauth();
+}
+
 </script>
 <template>
     <div class="grid-center">
@@ -76,7 +80,7 @@ const handleSubmit = async () => {
                 </div>
 
                 <div class="pb-4">
-                    <button
+                    <button @click="handleGoogleOauth()"
                         class="w-full py-2 px-4 border border-blue-500 rounded-md text-white space-x-2 hover:border hover:border-blue-700 hover:transition hover:duration-200 hover:ease-in">
                         <span>
                             <Icon name="logos:google-icon" />
