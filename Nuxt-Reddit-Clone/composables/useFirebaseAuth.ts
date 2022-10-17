@@ -1,15 +1,18 @@
 import { useFirebaseUser } from "../composables/useState";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { doc, setDoc, getFirestore, updateDoc } from "firebase/firestore";
 export const registerUser = async (email: string, password: string) => {
     const auth = getAuth();
     const db = getFirestore();
     const response = await createUserWithEmailAndPassword(auth, email, password);
-    await setDoc(doc(db, "users", response.user.uid), {
-        id: response.user.uid,
-        email: response.user.email,
-        online: true
-    });
+    if (response) {
+        await setDoc(doc(db, "users", response.user.uid), {
+            id: response.user.uid,
+            email: response.user.email,
+            online: true
+        });
+    };
+    return response;
 };
 
 export const loginUser = async (email: string, password: string) => {
@@ -19,6 +22,17 @@ export const loginUser = async (email: string, password: string) => {
     await updateDoc(doc(db, "users", response.user.uid), {
         online: true
     })
+};
+
+export const googleOauth = async () => {
+    const auth = getAuth();
+    const provider = new GoogleAuthProvider();
+    await signInWithPopup(auth, provider)
+        .then((res) => {
+            console.log(res)
+        }).catch((err) => {
+            console.log(err.message)
+        });
 };
 
 export const initUser = async () => {
