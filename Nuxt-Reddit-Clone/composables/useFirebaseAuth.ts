@@ -26,13 +26,16 @@ export const loginUser = async (email: string, password: string) => {
 
 export const googleOauth = async () => {
     const auth = getAuth();
+    const db = getFirestore();
     const provider = new GoogleAuthProvider();
-    await signInWithPopup(auth, provider)
-        .then((res) => {
-            console.log(res)
-        }).catch((err) => {
-            console.log(err.message)
-        });
+    const response = await signInWithPopup(auth, provider);
+    if (response) {
+        await setDoc(doc(db, "users", response?.user?.uid), {
+            id: response.user.uid,
+            email: response.user.email,
+            online: true
+        })
+    };
 };
 
 export const initUser = async () => {

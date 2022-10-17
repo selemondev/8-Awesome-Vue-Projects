@@ -30,9 +30,9 @@ const handleSubmit = async () => {
     }
 };
 
-const handleGoogleOauth = () => {
-    googleOauth();
-}
+const handleGoogleOauth = async () => {
+    await googleOauth();
+};
 
 </script>
 <template>
