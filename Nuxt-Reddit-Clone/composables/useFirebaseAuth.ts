@@ -5,13 +5,11 @@ export const registerUser = async (email: string, password: string) => {
     const auth = getAuth();
     const db = getFirestore();
     const response = await createUserWithEmailAndPassword(auth, email, password);
-    if (response) {
-        await setDoc(doc(db, "users", response.user.uid), {
-            id: response.user.uid,
-            email: response.user.email,
-            online: true
-        });
-    };
+    await setDoc(doc(db, "users", response.user.uid), {
+        id: response.user.uid,
+        email: response.user.email,
+        online: true
+    });
     return response;
 };
 
@@ -29,13 +27,13 @@ export const googleOauth = async () => {
     const db = getFirestore();
     const provider = new GoogleAuthProvider();
     const response = await signInWithPopup(auth, provider);
-    if (response) {
-        await setDoc(doc(db, "users", response?.user?.uid), {
-            id: response.user.uid,
-            email: response.user.email,
-            online: true
-        })
-    };
+    await setDoc(doc(db, "users", response?.user?.uid), {
+        id: response.user.uid,
+        email: response.user.email,
+        online: true
+    });
+
+    return response;
 };
 
 export const initUser = async () => {
