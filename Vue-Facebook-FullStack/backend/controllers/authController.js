@@ -59,6 +59,10 @@ const loginUser = asyncHandler(async (req, res) => {
     }
 });
 
+const getCredentials = asyncHandler(async (req, res) => {
+    res.status(200).json(req.user)
+});
+
 function generateToken(id) {
     return jwt.sign({ id }, process.env.JWT_SECRET_KEY, {
         expiresIn: "10m"
@@ -68,5 +72,6 @@ function generateToken(id) {
 
 module.exports = {
     registerUser,
-    loginUser
+    loginUser,
+    getCredentials
 }
