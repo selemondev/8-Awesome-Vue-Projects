@@ -40,6 +40,25 @@ const registerUser = asyncHandler(async (req, res) => {
     }
 });
 
+
+const loginUser = asyncHandler(async (req, res) => {
+    const { email, password } = req.body;
+
+    const User = await UserSchema.findOne({ email });
+
+    if (User & (await bcrypt.compare(password, User.password))) {
+        res.status(200);
+        res.json({
+            _id: User.id,
+            email: User.email,
+            token: generateToken(User._id)
+        })
+    } else {
+        res.status(400);
+        throw new Error("Invalid user credentials")
+    }
+});
+
 function generateToken(id) {
     return jwt.sign({ id }, process.env.JWT_SECRET_KEY, {
         expiresIn: "10m"
@@ -48,5 +67,6 @@ function generateToken(id) {
 
 
 module.exports = {
-    registerUser
+    registerUser,
+    loginUser
 }
