@@ -1,5 +1,0 @@
-<template>
-    <div>
-        <LoginAuthForm/>
-    </div>
-</template>
