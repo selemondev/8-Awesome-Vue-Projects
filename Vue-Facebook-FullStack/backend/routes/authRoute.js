@@ -5,3 +5,4 @@ const { registerUser, loginUser, getCredentials } = require("../controllers/auth
 router.route("/credentials").get(protect, getCredentials)
 router.route("/register").post(registerUser)
 router.route("/login").post(loginUser)
+module.exports = router;
