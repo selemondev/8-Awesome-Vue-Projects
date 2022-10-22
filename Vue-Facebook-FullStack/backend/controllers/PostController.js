@@ -94,3 +94,20 @@ const getPost = asyncHandler(async (req, res) => {
         res.status(200).json(post);
     }
 });
+
+const getTimeLinePosts = asyncHandler(async (req, res) => {
+    try {
+        const currentUser = await UserSchema.findById(req.params.id);
+        const userPosts = await PostSchema.find({ userId: currentUser._id });
+        const friendPosts = await Promise.all(
+            currentUser.followings.map((friendId) => {
+                return PostSchema.find({ userId: friendId })
+            })
+        );
+        res.status(200).json(userPosts.concat(...friendPosts));
+    } catch (err) {
+        res.status(400);
+        throw new Error(err.message)
+    }
+
+})
