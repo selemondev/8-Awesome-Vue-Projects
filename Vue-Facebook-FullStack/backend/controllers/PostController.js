@@ -109,4 +109,13 @@ const getTimeLinePosts = asyncHandler(async (req, res) => {
         res.status(400);
         throw new Error(err.message)
     }
-})
+});
+
+module.exports = {
+    createPost,
+    updatePost,
+    deletePost,
+    likePost,
+    getPost,
+    getTimeLinePosts
+}
