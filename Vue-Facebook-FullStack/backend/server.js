@@ -3,7 +3,7 @@ const dotenv = require("dotenv").config();
 const colors = require("colors");
 const cors = require("cors");
 const PORT = process.env.PORT || 5000;
-const errorMiddleware = require("./middlewares/errorMiddleware");
+const { errorMiddleware } = require("./middlewares/errorMiddleware");
 const connectDB = require("./config/db");
 const authRoute = require("./routes/authRoute");
 const userRoute = require("./routes/userRoute");
@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/api/auth", authRoute);
 app.use("/api/user", userRoute);
-app.use(errorMiddleware);
+app.use(errorMiddleware)
 app.listen(PORT, () => {
     console.log(`Server is listening on PORT ${PORT}`)
 });
