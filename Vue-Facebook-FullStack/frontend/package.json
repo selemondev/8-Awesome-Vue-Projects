@@ -15,6 +15,7 @@
     "@vueuse/core": "^9.3.1",
     "pinia": "^2.0.23",
     "vue": "^3.2.37",
+    "vue-router": "4",
     "vue-toastification": "^2.0.0-rc.5"
   },
   "devDependencies": {
