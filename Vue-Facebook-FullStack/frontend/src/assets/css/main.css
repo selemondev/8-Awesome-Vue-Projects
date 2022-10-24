@@ -5,7 +5,7 @@
 
 @layer base {
     body {
-        @apply min-h-screen w-full font-Roboto
+        @apply min-h-screen w-full font-Roboto dark:bg-[#0D1D2E]
     }
 }
 
