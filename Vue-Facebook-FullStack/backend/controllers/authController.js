@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const asyncHandler = require("express-async-handler");
-const UserSchema = require("../models/userModel");
+const UserModel = require("../models/userModel");
 const registerUser = asyncHandler(async (req, res) => {
     const { username, email, password } = req.body;
 
@@ -10,7 +10,7 @@ const registerUser = asyncHandler(async (req, res) => {
         throw new Error("Please enter all the required fields")
     };
 
-    const userExists = await UserSchema.findOne({ email });
+    const userExists = await UserModel.findOne({ email });
 
     if (userExists) {
         res.status(400);
@@ -18,9 +18,9 @@ const registerUser = asyncHandler(async (req, res) => {
     };
 
     const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hashPassword(password, salt);
+    const hashedPassword = await bcrypt.hash(password, salt);
 
-    const user = await UserSchema.create({
+    const user = await UserModel.create({
         username,
         email,
         password: hashedPassword
@@ -44,7 +44,7 @@ const registerUser = asyncHandler(async (req, res) => {
 const loginUser = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
 
-    const User = await UserSchema.findOne({ email });
+    const User = await UserModel.findOne({ email });
 
     if (User & (await bcrypt.compare(password, User.password))) {
         res.status(200);
