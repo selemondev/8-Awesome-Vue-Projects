@@ -21,4 +21,16 @@
     .flex-around {
         @apply flex justify-around items-center
     }
+
+    .grid-layout {
+        @apply grid place-items-center
+    }
+
+    .label {
+        @apply block dark:text-white
+    }
+
+    .input-style {
+        @apply w-full py-2 px-2 appearance-none mt-2 rounded-md focus:outline-none focus:ring-1 focus:ring-[#145ceb] border border-gray-300
+    }
 }
