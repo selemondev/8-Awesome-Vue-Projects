@@ -34,6 +34,10 @@
         @apply w-full py-2 px-2 appearance-none mt-2 rounded-md focus:outline-none focus:ring-1 focus:ring-[#145ceb] border border-gray-300 placeholder-gray-500
     }
 
+    .profile-input-style {
+        @apply w-full py-2 px-2 appearance-none mt-2 rounded-md focus:outline-none focus:ring-1 focus:ring-[#2068b4] border border-gray-300 placeholder-gray-500 dark:bg-gray-800 dark:border-none dark:placeholder-gray-400 dark:text-white
+    }
+
     .error {
         @apply font-bold dark:font-normal text-red-500 mt-2
     }
