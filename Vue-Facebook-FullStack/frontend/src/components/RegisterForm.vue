@@ -1,8 +1,9 @@
 <script setup>
 import { Icon } from "@iconify/vue";
 import useVuelidate from "@vuelidate/core";
-import { helpers, minLength, sameAs, email, required } from "@vuelidate/validators"; 
-import { reactive } from "vue";
+import { helpers, minLength, sameAs, email, required } from "@vuelidate/validators";
+import { reactive, computed } from "vue";
+import { useAuthStore } from "../stores/authStore";
 const formData = reactive({
     email: "",
     username: "",
@@ -10,18 +11,23 @@ const formData = reactive({
     confirmPassword: ""
 });
 
-const rules = {
-    email: { required: helpers.withMessage("Email is required", required), email },
-    username: { required: helpers.withMessage("Username is required", required) },
-    password: { required: helpers.withMessage("Password is required", required), minLength: minLength(8) },
-    confirmPassword: { required: helpers.withMessage("Passwords do not match", required), sameAs: sameAs(formData.password) }
-};
+const rules = computed(() => {
+    return {
+        username: { required: helpers.withMessage("Username is required", required) },
+        email: { required: helpers.withMessage("Email is required", required), email },
+        password: { required: helpers.withMessage("Password is required", required), minLength: minLength(8) },
+        confirmPassword: { required: helpers.withMessage("Passwords do not match", required), sameAs: sameAs(formData.password) }
+    }
+});
 
 const v$ = useVuelidate(rules, formData);
-
+const authStore = useAuthStore();
 const handleSubmit = async () => {
     const result = await v$.value.$validate();
-
+    if (result) {
+        const response = authStore.registerUser(formData.username, formData.email, formData.password);
+        console.log(response);
+    };
 }
 </script>
 
@@ -37,25 +43,26 @@ const handleSubmit = async () => {
                 <div :class="[v$.username.$error ? 'pb-0' : 'pb-6']">
                     <label for="username" class="label">Username</label>
                     <input type="text" placeholder="Username" class="input-style" v-model="formData.username">
-                    <p class="error" v-if="v$.username.$error">{{v$.username.$errors[0].$message}}</p>
+                    <p class="error" v-if="v$.username.$error">{{ v$.username.$errors[0].$message }}</p>
                 </div>
 
                 <div :class="[v$.email.$error ? 'pb-0' : 'pb-6']">
                     <label for="email" class="label">Email</label>
                     <input type="email" placeholder="Email" class="input-style" v-model="formData.email">
-                    <p class="error" v-if="v$.email.$error">{{v$.email.$errors[0].$message}}</p>
+                    <p class="error" v-if="v$.email.$error">{{ v$.email.$errors[0].$message }}</p>
                 </div>
 
                 <div :class="[v$.password.$error ? 'pb-0' : 'pb-6']">
                     <label for="password" class="label">Password</label>
                     <input type="password" placeholder="Password" class="input-style" v-model="formData.password">
-                    <p class="error" v-if="v$.password.$error">{{v$.password.$errors[0].$message}}</p>
+                    <p class="error" v-if="v$.password.$error">{{ v$.password.$errors[0].$message }}</p>
                 </div>
 
                 <div :class="[v$.confirmPassword.$error ? 'pb-0' : 'pb-6']">
                     <label for="confirmPassword" class="label">ConfirmPassword</label>
-                    <input type="password" placeholder="ConfirmPassword" class="input-style" v-model="formData.confirmPassword">
-                    <p class="error" v-if="v$.confirmPassword.$error">{{v$.confirmPassword.$errors[0].$message}}</p>
+                    <input type="password" placeholder="ConfirmPassword" class="input-style"
+                        v-model="formData.confirmPassword">
+                    <p class="error" v-if="v$.confirmPassword.$error">{{ v$.confirmPassword.$errors[0].$message }}</p>
                 </div>
 
                 <div :class="[v$.confirmPassword.$error ? 'pt-3' : 'pt-1']">

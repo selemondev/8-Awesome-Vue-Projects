@@ -8,10 +8,12 @@ const formData = reactive({
     password: "",
 });
 
-const rules = {
-    email: { required: helpers.withMessage("Email is required", required), email },
-    password: { required: helpers.withMessage("Password is required", required), minLength: minLength(8) },
-};
+const rules = computed(() => {
+    return {
+        email: { required: helpers.withMessage("Email is required", required), email },
+        password: { required: helpers.withMessage("Password is required", required), minLength: minLength(8) },
+    }
+})
 
 const v$ = useVuelidate(rules, formData);
 
