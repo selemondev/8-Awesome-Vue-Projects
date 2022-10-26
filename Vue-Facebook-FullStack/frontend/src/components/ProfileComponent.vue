@@ -60,7 +60,7 @@ const handleSubmit = async () => {
     <div class="grid-layout">
 
         <div>
-            <h2 class="mt-3 text-2xl text-[#145ceb] dark:text-[#3d77b5] font-bold md:text-4xl">Set up your Profile</h2>
+            <h2 class="mt-3 text-xl text-[#145ceb] dark:text-[#3d77b5] font-bold md:text-2xl">Set up your Profile</h2>
         </div>
         <div
          :class="[v$.work.$error ? 'flex flex-col mt-6 rounded-md border border-gray-300 dark:border-none dark:bg-[#112e4d] h-[620px] md:h-[420px] md:w-[550px]' : 'flex flex-col mt-6 rounded-md border border-gray-300 dark:border-none dark:bg-[#112e4d] h-[560px] md:h-[390px] md:w-[550px]']">
