@@ -2,7 +2,11 @@
 import { Icon } from '@iconify/vue';
 import useVuelidate from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
+import axios from 'axios';
 import { reactive, computed, ref, watchEffect } from "vue";
+import { useAuthStore } from '../stores/authStore';
+import { credentials } from "../utils/authUrl";
+const authStore = useAuthStore();
 const formData = reactive({
     bio: "",
     city: "",
@@ -11,6 +15,25 @@ const formData = reactive({
     profilePicture: "",
     coverPicture: ""
 });
+
+const token = ref("");
+const data = ref([]);
+watchEffect(() => {
+    token.value = authStore.userToken;
+});
+
+const config = {
+    headers: {
+        authorization: `Bearer ${token.value}`
+    }
+};
+
+const getCredentials = async () => {
+    const response = await axios.get(credentials, config);
+    console.log(response);
+    data.value = response;
+};
+getCredentials();
 
 const rules = computed(() => {
     return {
