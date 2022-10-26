@@ -2,6 +2,7 @@
 import { Icon } from "@iconify/vue";
 import ColorModeSwitch from "./ColorModeSwitch.vue";
 import { useAuthStore } from "../stores/authStore";
+import MetaIcons from "./MetaIcons.vue";
 import { ref, watchEffect } from "vue";
 const token = ref("");
 const authStore = useAuthStore();
@@ -20,7 +21,12 @@ watchEffect(() => {
                     <h1 class="text-2xl font-bold text-[#145ceb] hidden dark:text-white md:flex">Meta</h1>
                 </div>
 
+                <div>
+                    <input type="text" placeholder="Search Meta" class="navbar-search">
+                </div>
+
                 <div class="flex items-center space-x-3">
+                    <MetaIcons/>
                     <ColorModeSwitch />
                     <div v-if="!token">
                         <router-link to="/">
