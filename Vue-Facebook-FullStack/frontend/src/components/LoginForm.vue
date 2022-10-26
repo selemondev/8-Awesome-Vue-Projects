@@ -2,7 +2,8 @@
 import { Icon } from "@iconify/vue";
 import useVuelidate from "@vuelidate/core";
 import { helpers, minLength, email, required } from "@vuelidate/validators";
-import { reactive } from "vue";
+import { reactive, computed } from "vue";
+import { useAuthStore } from "../stores/authStore";
 const formData = reactive({
     email: "",
     password: "",
@@ -16,10 +17,12 @@ const rules = computed(() => {
 })
 
 const v$ = useVuelidate(rules, formData);
-
+const authStore = useAuthStore();
 const handleSubmit = async () => {
     const result = await v$.value.$validate();
-
+    if (result) {
+        await authStore.loginUser(formData.email, formData.password);
+    };
 }
 </script>
 

@@ -1,12 +1,12 @@
 import { defineStore, acceptHMRUpdate } from "pinia";
-import { registerUser } from "../utils/authUrl";
+import { registerUser, loginUser } from "../utils/authUrl";
 import axios from "axios";
-import { useLocalStorage } from "@vueuse/core";
 export const useAuthStore = defineStore({
     id: "authStore",
     state: () => ({
-        userToken: useLocalStorage("token", ""),
+        userToken: JSON.parse(localStorage.getItem("token")),
         registerLoading: false,
+        loginLoading: false,
     }),
 
     getters: {
@@ -16,10 +16,19 @@ export const useAuthStore = defineStore({
     actions: {
         async registerUser(username, email, password) {
             this.registerLoading = true;
-            const result = await axios.post(registerUser, { username, email, password });
-            this.userToken = result.data?.data?.token;
+            const response = await axios.post(registerUser, { username, email, password });
+            this.userToken = response.data?.token;
             this.registerLoading = false;
-        }
+            localStorage.setItem("token", JSON.stringify(response.data?.token));
+        },
+
+        async loginUser(email, password) {
+            this.loginLoading = true;
+            const response = await axios.post(loginUser, { email, password });
+            this.userToken = response.data?.token;
+            this.loginLoading = false;
+            localStorage.setItem("token", JSON.stringify(response.data?.token))
+        },
     },
 
 });
