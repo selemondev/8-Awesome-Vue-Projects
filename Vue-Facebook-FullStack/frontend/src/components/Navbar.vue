@@ -1,6 +1,13 @@
 <script setup>
 import { Icon } from "@iconify/vue";
 import ColorModeSwitch from "./ColorModeSwitch.vue";
+import { useAuthStore } from "../stores/authStore";
+import { ref, watchEffect } from "vue";
+const token = ref("");
+const authStore = useAuthStore();
+watchEffect(() => {
+    token.value = authStore.userToken;
+});
 </script>
 <template>
     <div>
@@ -15,11 +22,14 @@ import ColorModeSwitch from "./ColorModeSwitch.vue";
 
                 <div class="flex items-center space-x-3">
                     <ColorModeSwitch />
-                    <router-link to="/">
-                        <button
-                            class="py-2 px-4 text-sm rounded-md text-white bg-[#145ceb] hover:bg-[#1f6aff] transition duration-200 ease-in md:text-base"> Sign In
-                        </button>
-                    </router-link>
+                    <div v-if="!token">
+                        <router-link to="/">
+                            <button
+                                class="py-2 px-4 text-sm rounded-md text-white bg-[#145ceb] hover:bg-[#1f6aff] transition duration-200 ease-in md:text-base">
+                                Sign In
+                            </button>
+                        </router-link>
+                    </div>
                 </div>
             </nav>
         </header>

@@ -1,14 +1,26 @@
 <script setup>
 import { Icon } from "@iconify/vue";
 import useVuelidate from "@vuelidate/core";
+import { useRouter } from "vue-router";
 import { helpers, minLength, sameAs, email, required } from "@vuelidate/validators";
-import { reactive, computed } from "vue";
+import { reactive, computed, watchEffect, ref } from "vue";
 import { useAuthStore } from "../stores/authStore";
 const formData = reactive({
     email: "",
     username: "",
     password: "",
     confirmPassword: ""
+});
+
+const loading = ref(false);
+const token = ref("");
+const router = useRouter();
+watchEffect(() => {
+    loading.value = authStore.loginLoading;
+    token.value = authStore.userToken;
+    if (token.value) {
+        router.push("/profile")
+    }
 });
 
 const rules = computed(() => {
@@ -25,8 +37,7 @@ const authStore = useAuthStore();
 const handleSubmit = async () => {
     const result = await v$.value.$validate();
     if (result) {
-        const response = authStore.registerUser(formData.username, formData.email, formData.password);
-        console.log(response);
+        await authStore.registerUser(formData.username, formData.email, formData.password);
     };
 }
 </script>
