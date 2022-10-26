@@ -30,13 +30,13 @@ const routes = [
     },
 
     {
-        path: "/home",
-        name: "home",
-        component: () => import("../views/Home.vue"),
+        path: "/feed",
+        name: "feed",
+        component: () => import("../views/Feed.vue"),
         meta: {
             auth: true
         }
-    }
+    },
 ];
 
 const router = createRouter({
