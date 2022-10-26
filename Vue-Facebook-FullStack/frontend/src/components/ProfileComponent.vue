@@ -1,5 +1,37 @@
 <script setup>
 import { Icon } from '@iconify/vue';
+import useVuelidate from "@vuelidate/core";
+import { required, helpers } from "@vuelidate/validators";
+import { reactive, computed, ref, watchEffect } from "vue";
+const formData = reactive({
+    bio: "",
+    city: "",
+    from: "",
+    work: "",
+    profilePicture: "",
+    coverPicture: ""
+});
+
+const rules = computed(() => {
+    return {
+        profilePicture: { required: helpers.withMessage("Profile picture is required", required) },
+        coverPicture: { required: helpers.withMessage("Cover picture is required", required) },
+        bio: { required: helpers.withMessage("Bio is required", required) },
+        city: { required: helpers.withMessage("City is required", required) },
+        work: { required: helpers.withMessage("Job title is required", required) },
+        from: { required: helpers.withMessage("Home origin is required", required) },
+    }
+});
+
+const v$ = useVuelidate(rules, formData);
+
+const handleSubmit = async () => {
+    const result = await v$.value.$validate();
+
+    if (result) {
+        
+    }
+}
 </script>
 <template>
     <div class="grid-layout">
