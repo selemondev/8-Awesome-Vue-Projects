@@ -21,7 +21,7 @@ watchEffect(() => {
                     <h1 class="text-2xl font-bold text-[#145ceb] hidden dark:text-white md:flex">Meta</h1>
                 </div>
 
-                <div>
+                <div v-if="token">
                     <input type="text" placeholder="Search Meta" class="navbar-search">
                 </div>
 

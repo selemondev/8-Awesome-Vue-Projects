@@ -17,7 +17,8 @@ const formData = reactive({
 });
 
 const token = ref("");
-const data = ref([]);
+const credentialUsername = ref("");
+const credentialEmail = ref("");
 watchEffect(() => {
     token.value = authStore.userToken;
 });
@@ -30,8 +31,8 @@ const config = {
 
 const getCredentials = async () => {
     const response = await axios.get(credentials, config);
-    console.log(response);
-    data.value = response;
+    credentialUsername.value = response.data.username;
+    credentialEmail.value = response.data.email;
 };
 getCredentials();
 
@@ -85,12 +86,12 @@ const handleSubmit = async () => {
                 <div class="flex flex-col md:flex md:flex-row md:flex-between md:flex-wrap mt-3 px-3">
                     <div class="flex-center space-x-2 pb-3">
                         <Icon icon="carbon:user" class="w-10 h-10 text-[#3563be] dark:text-[#3e648d]" />
-                        <input type="text" placeholder="Username" class="profile-input-style">
+                        <input type="text" placeholder="Username" v-model="credentialUsername" class="profile-input-style">
                     </div>
 
                     <div class="flex-center space-x-2 pb-3">
                         <Icon icon="ic:outline-email" class="w-10 pt-2 h-10 text-[#3563be] dark:text-[#3e648d]" />
-                        <input type="email" placeholder="Email" class="profile-input-style">
+                        <input type="email" placeholder="Email" v-model="credentialEmail" class="profile-input-style">
                     </div>
 
                     <div :class="[v$.bio.$error ? 'pb-0' : 'pb-3']">

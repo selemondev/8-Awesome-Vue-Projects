@@ -1,5 +1,12 @@
 <script setup>
 import { Icon } from "@iconify/vue";
+import { useAuthStore } from "../stores/authStore";
+import { ref, watchEffect } from "vue";
+const authStore = useAuthStore();
+const token = ref("");
+watchEffect(() => {
+    token.value = authStore.userToken;
+})
 const icons = [
     {
         id: 1,
@@ -18,7 +25,7 @@ const icons = [
 ];
 </script>
 <template>
-    <div class="flex justify-center items-center space-x-2">
+    <div v-if="token" class="flex justify-center items-center space-x-2">
         <div v-for="icon in icons" :key="icon.id">
             <Icon :icon="icon.url" class="h-6 w-6 text-[#145ceb] cursor-pointer" />
         </div>

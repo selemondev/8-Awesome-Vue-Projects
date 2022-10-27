@@ -67,8 +67,7 @@ const handleSubmit = async () => {
 
                 <div>
                     <button type="submit"
-                        class="w-full py-2 px-4 bg-[#145ceb] hover:bg-[#1f6aff] transition duration-200 ease-in text-white rounded-md">Sign
-                        In</button>
+                        class="w-full py-2 px-4 bg-[#145ceb] hover:bg-[#1f6aff] transition duration-200 ease-in text-white rounded-md">{{ loading ? "Signing In..." : "Sign In" }}</button>
                 </div>
             </form>
         </div>
