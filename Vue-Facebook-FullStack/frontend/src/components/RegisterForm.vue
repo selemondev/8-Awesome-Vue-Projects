@@ -12,6 +12,7 @@ const formData = reactive({
     confirmPassword: ""
 });
 
+const authStore = useAuthStore();
 const loading = ref(false);
 const token = ref("");
 const router = useRouter();
@@ -33,7 +34,6 @@ const rules = computed(() => {
 });
 
 const v$ = useVuelidate(rules, formData);
-const authStore = useAuthStore();
 const handleSubmit = async () => {
     const result = await v$.value.$validate();
     if (result) {
@@ -78,8 +78,7 @@ const handleSubmit = async () => {
 
                 <div :class="[v$.confirmPassword.$error ? 'pt-3' : 'pt-1']">
                     <button type="submit"
-                        class="w-full py-2 px-4 bg-[#145ceb] hover:bg-[#1f6aff] transition duration-200 ease-in text-white rounded-md">Sign
-                        Up</button>
+                        class="w-full py-2 px-4 bg-[#145ceb] hover:bg-[#1f6aff] transition duration-200 ease-in text-white rounded-md">{{ loading ? "Signing Up..." : "Sign Up"}}</button>
                 </div>
             </form>
         </div>
