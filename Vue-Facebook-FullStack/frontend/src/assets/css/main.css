@@ -26,6 +26,10 @@
         @apply grid place-items-center
     }
 
+    .animation-hover {
+        @apply dark:hover:bg-[#0a3563] hover:bg-gray-600 hover:bg-opacity-10 rounded-full cursor-pointer w-[24px] h-[24px] transition duration-200 ease-in xl:px-4 xl:w-auto xl:h-auto xl:py-4;
+    }
+
     .label {
         @apply block dark:text-white
     }
