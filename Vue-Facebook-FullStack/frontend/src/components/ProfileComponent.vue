@@ -108,8 +108,7 @@ const handleSubmit = async () => {
 }
 </script>
 <template>
-    <div class="grid-layout">
-
+    <div class="grid-layout pt-16">
         <div>
             <h2 class="mt-3 text-xl text-[#145ceb] dark:text-[#3d77b5] font-bold md:text-2xl">Set up your Profile</h2>
         </div>
