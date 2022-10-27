@@ -47,6 +47,10 @@
     }
 
     .navbar-search {
-        @apply appearance-none py-2 px-2 mx-2 rounded-md w-24 focus:outline-none focus:ring-1 focus:ring-[#145CEB] border border-gray-300 dark:border-none dark:bg-gray-800 dark:text-white md:w-72 md:mx-0
+        @apply appearance-none py-2 px-2 mx-2 rounded-md w-32 focus:outline-none focus:ring-1 focus:ring-[#145CEB] border border-gray-300 dark:border-none dark:bg-gray-800 dark:text-white sm:w-40 md:w-72 md:mx-0
+    }
+
+    .icon-style {
+        @apply flex justify-center items-center space-x-2 w-24 px-2 h-10 rounded-md bg-gray-200 hover:bg-gray-300 transition duration-200 ease-in cursor-pointer dark:bg-gray-700 grid-layout
     }
 }

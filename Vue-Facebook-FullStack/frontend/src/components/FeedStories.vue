@@ -1,5 +1,6 @@
 <script setup>
 import FeedStory from "../components/FeedStory.vue";
+import FeedInput from "../components/FeedInput.vue";
 import { ref } from "vue";
 import { faker } from '@faker-js/faker';
 import { Icon } from "@iconify/vue";
@@ -21,7 +22,7 @@ Array.from({ length: 8 }).forEach(() => {
 </script>
 <template>
     <main class="flex-grow max-w-2xl sm:ml-[73px] xl:ml-[370px]">
-        <div class="flex space-x-3 p-6 mt-12 rounded-sm overflow-x-scroll w-80 lg:w-full lg:scrollbar-hide lg:mt-14">
+        <div class="flex space-x-3 p-6 mt-12 rounded-sm overflow-x-scroll w-80 sm:w-96 lg:w-full lg:scrollbar-hide lg:mt-14">
             <div class="px-4 grid-layout rounded-md h-16 w-16 bg-gray-200 dark:bg-[#18314d]">
                 <div class="grid-layout rounded-md bg-[#145CEB] h-6 w-6">
                     <Icon icon="ic:baseline-plus" class="text-white"/>
@@ -32,5 +33,6 @@ Array.from({ length: 8 }).forEach(() => {
                 <FeedStory :id="story.userId" :image="story.avatar" :username="story.username" />
             </div>
         </div>
+        <FeedInput/>
     </main>
 </template>
