@@ -13,7 +13,7 @@ watchEffect(() => {
 <template>
     <div>
         <header>
-            <nav class="fixed h-14 w-full border-b border-gray-200 dark:border-gray-800 flex-between p-2">
+            <nav class="dark:bg-[#0D1D2E] fixed h-14 w-full border-b border-gray-200 dark:border-gray-800 flex-between p-2">
                 <div class="flex items-center space-x-2">
                     <router-link to="/">
                         <Icon icon="fa6-brands:meta" class="h-10 w-10 text-[#145ceb]" />
