@@ -22,7 +22,7 @@ Array.from({ length: 8 }).forEach(() => {
 <template>
     <main class="flex-grow max-w-2xl sm:ml-[73px] xl:ml-[370px]">
         <div class="flex space-x-3 p-6 mt-12 rounded-sm overflow-x-scroll scrollbar-hide lg:mt-14">
-            <div class="px-4 grid-layout rounded-md h-16 w-16 bg-[#18314d]">
+            <div class="px-4 grid-layout rounded-md h-16 w-16 bg-gray-200 dark:bg-[#18314d]">
                 <div class="grid-layout rounded-md bg-[#145CEB] h-6 w-6">
                     <Icon icon="ic:baseline-plus" class="text-white"/>
                 </div>
