@@ -25,7 +25,7 @@ const icons = [
 ];
 </script>
 <template>
-    <div v-if="token" class="flex justify-center items-center space-x-2">
+    <div v-if="token" class="hidden lg:flex lg:justify-center lg:items-center lg:space-x-2">
         <div v-for="icon in icons" :key="icon.id">
             <Icon :icon="icon.url" class="h-6 w-6 text-[#145ceb] cursor-pointer" />
         </div>
