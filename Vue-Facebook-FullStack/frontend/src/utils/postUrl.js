@@ -1,1 +1,0 @@
-export const postCreateUrl = "http://localhost:5000/api/post/create"
