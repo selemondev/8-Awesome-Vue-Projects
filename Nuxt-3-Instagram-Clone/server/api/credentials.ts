@@ -1,7 +1,4 @@
-import type { IncomingMessage, ServerResponse } from "http";
-export default async (req: IncomingMessage, res: ServerResponse) => {
-    // @ts-ignore;
-    const user = req.user;
-
+export default defineEventHandler((event) => {
+    const user = event;
     return user ? user : "User is signed out";
-}
+})
