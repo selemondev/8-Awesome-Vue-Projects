@@ -1,4 +1,5 @@
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { useFirebaseUser, useLoadingState } from "./state";
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { setDoc, doc, getFirestore } from "firebase/firestore";
 export const registerUser = async (username: string, email: string, password: string) => {
     const auth = getAuth();
@@ -25,3 +26,28 @@ export const loginUser = async (email: string, password: string) => {
         online: true
     })
 };
+
+export const initUser = async () => {
+    const firebaseUser = useFirebaseUser();
+    const loadingState = useLoadingState();
+    const auth = getAuth();
+    firebaseUser.value = auth?.currentUser;
+    const router = useRouter();
+    const userCookie: any = useCookie("userCookie");
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            router.push("/feed")
+        } else {
+            router.push("/")
+        };
+
+        loadingState.value = false;
+        firebaseUser.value = user;
+        userCookie.value = user;
+
+        $fetch("/api/auth", {
+            method: "POST",
+            body: { user }
+        });
+    });
+}
