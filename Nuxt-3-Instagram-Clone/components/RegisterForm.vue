@@ -2,7 +2,13 @@
 import useVuelidate from "@vuelidate/core";
 import { minLength, sameAs, helpers, required, email } from "@vuelidate/validators";
 import { ref, reactive, computed } from "vue";
-const formData = reactive({
+interface credentials {
+    username: string,
+    email: string,
+    password: string,
+    confirmPassword: string
+};
+const formData = reactive<credentials>({
     username: "",
     email: "",
     password: "",
@@ -19,12 +25,14 @@ const rules = computed(() => {
 });
 
 const v$ = useVuelidate(rules, formData);
-
+const registerLoading = ref(false);
 const handleSubmit = async () => {
     const result = await v$.value.$validate();
 
     if (result) {
-
+        registerLoading.value = true;
+        await registerUser(formData.username, formData.email, formData.password);
+        registerLoading.value = false;
     }
 }
 </script>
@@ -65,7 +73,7 @@ const handleSubmit = async () => {
 
                 <div>
                     <button type="submit" class="form-btn">
-                        Sign Up
+                        {{ registerLoading ? "Signing Up..." : "Sign Up" }}
                     </button>
                 </div>
             </form>

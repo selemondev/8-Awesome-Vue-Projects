@@ -972,14 +972,6 @@
     tailwindcss "^3.2.0"
     ufo "^0.8.6"
 
-"@pinia/nuxt@^0.4.3":
-  version "0.4.3"
-  resolved "https://registry.npmjs.org/@pinia/nuxt/-/nuxt-0.4.3.tgz"
-  integrity sha512-pDyThvbOi9ztSPI9RDJG857Knb/mmUdDrDiLXbtLVQ3/l647jKncdP4TiRLnMlObENJjcFPEwHT7OVPq4VhQMw==
-  dependencies:
-    "@nuxt/kit" "^3.0.0-rc.11"
-    pinia ">=2.0.23"
-
 "@popperjs/core@^2.11.0":
   version "2.11.6"
   resolved "https://registry.npmjs.org/@popperjs/core/-/core-2.11.6.tgz"
@@ -1243,7 +1235,7 @@
     "@vue/compiler-dom" "3.2.41"
     "@vue/shared" "3.2.41"
 
-"@vue/devtools-api@^6.4.4", "@vue/devtools-api@^6.4.5":
+"@vue/devtools-api@^6.4.5":
   version "6.4.5"
   resolved "https://registry.npmjs.org/@vue/devtools-api/-/devtools-api-6.4.5.tgz"
   integrity sha512-JD5fcdIuFxU4fQyXUu3w2KpAJHzTVdN+p4iOX2lMWSHMOoQdMAcpFLZzm9Z/2nmsoZ1a96QEhZ26e50xLBsgOQ==
@@ -4165,14 +4157,6 @@ pify@^2.3.0:
   version "2.3.0"
   resolved "https://registry.npmjs.org/pify/-/pify-2.3.0.tgz"
   integrity sha512-udgsAY+fTnvv7kI7aaxbqwWNb0AHiB0qBO89PZKPkoTmGOgdbrHDKD+0B2X4uTfJ/FT1R09r9gTsjUjNJotuog==
-
-pinia@>=2.0.23, pinia@^2.0.23:
-  version "2.0.23"
-  resolved "https://registry.npmjs.org/pinia/-/pinia-2.0.23.tgz"
-  integrity sha512-N15hFf4o5STrxpNrib1IEb1GOArvPYf1zPvQVRGOO1G1d74Ak0J0lVyalX/SmrzdT4Q0nlEFjbURsmBmIGUR5Q==
-  dependencies:
-    "@vue/devtools-api" "^6.4.4"
-    vue-demi "*"
 
 pkg-types@^0.3.5:
   version "0.3.6"
