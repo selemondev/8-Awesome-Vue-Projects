@@ -1,5 +1,5 @@
 import { useFirebaseUser, useLoadingState } from "./state";
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
 import { setDoc, doc, getFirestore } from "firebase/firestore";
 export const registerUser = async (username: string, email: string, password: string) => {
     const auth = getAuth();
@@ -50,4 +50,10 @@ export const initUser = async () => {
             body: { user }
         });
     });
+};
+
+
+export const signOutUser = async () => {
+    const auth = getAuth();
+    await signOut(auth);
 }
