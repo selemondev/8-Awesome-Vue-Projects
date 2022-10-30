@@ -5,11 +5,15 @@
 
 @layer base {
     body {
-        @apply w-full min-h-screen font-Roboto bg-white dark:bg-black
+        @apply w-full min-h-screen font-Roboto bg-white dark:bg-gray-900
     }
 }
 
 @layer components {
+    .grid-center {
+        @apply grid place-items-center
+    }
+
     .flex-center {
         @apply flex justify-center items-center
     }
@@ -24,5 +28,25 @@
 
     .navbar-btn {
         @apply py-2 px-4 rounded-md bg-[#ec5761] hover:bg-[#E5515B] text-white transition duration-200 ease-in
+    }
+
+    .form-label {
+        @apply block mt-2 dark:text-white
+    }
+
+    .form-input {
+        @apply appearance-none py-2 px-2 w-full border border-gray-200 mt-2 rounded-md focus:outline-none focus:ring-1 focus:ring-[#E5515B] placeholder-gray-500
+    }
+
+    .form-btn {
+        @apply w-full py-2 text-white bg-[#ec5761] hover:bg-[#E5515B] rounded-md transition-effect
+    }
+
+    .error {
+        @apply text-red-500 my-2 font-bold dark:font-normal
+    }
+
+    .transition-effect {
+        @apply transition duration-200 ease-in
     }
 }
