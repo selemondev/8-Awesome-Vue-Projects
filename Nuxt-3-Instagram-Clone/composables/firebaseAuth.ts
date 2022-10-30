@@ -4,6 +4,7 @@ import { setDoc, doc, getFirestore } from "firebase/firestore";
 export const registerUser = async (username: string, email: string, password: string) => {
     const auth = getAuth();
     const db = getFirestore();
+    const router = useRouter();
     const response = await createUserWithEmailAndPassword(auth, email, password);
     await setDoc(doc(db, "users", response.user.uid), {
         id: response.user.uid,
@@ -11,7 +12,7 @@ export const registerUser = async (username: string, email: string, password: st
         username: username,
         online: true,
     });
-
+    router.push("/profile")
     return response;
 };
 
@@ -56,4 +57,4 @@ export const initUser = async () => {
 export const signOutUser = async () => {
     const auth = getAuth();
     await signOut(auth);
-}
+};

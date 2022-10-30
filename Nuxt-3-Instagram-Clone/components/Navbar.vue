@@ -1,3 +1,6 @@
+<script setup lang="ts">
+const firebaseUser = useFirebaseUser();
+</script>
 <template>
     <div>
         <header>
@@ -9,7 +12,7 @@
                 </div>
                 <div class="flex-center space-x-3">
                     <ColorModeSwitch />
-                    <button class="navbar-btn">Sign In</button>
+                    <button v-if="!firebaseUser" class="navbar-btn">Sign In</button>
                 </div>
             </nav>
         </header>

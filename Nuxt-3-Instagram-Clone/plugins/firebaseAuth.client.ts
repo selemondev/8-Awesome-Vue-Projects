@@ -13,8 +13,8 @@ export default defineNuxtPlugin((nuxtApp) => {
     };
 
     const app = initializeApp(firebaseConfig);
-    initUser();
     const auth = getAuth(app);
+    initUser();
     nuxtApp.vueApp.provide("auth", auth);
     nuxtApp.provide("auth", auth);
 })
