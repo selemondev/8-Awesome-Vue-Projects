@@ -1,3 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    body {
+        @apply w-full min-h-screen font-Roboto bg-white dark:bg-black
+    }
+}
+
+@layer components {
+    .flex-center {
+        @apply flex justify-center items-center
+    }
+
+    .flex-between {
+        @apply flex justify-between items-center
+    }
+
+    .flex-around {
+        @apply flex justify-around items-center
+    }
+
+    .navbar-btn {
+        @apply py-2 px-4 rounded-md bg-[#ec5761] hover:bg-[#E5515B] text-white transition duration-200 ease-in
+    }
+}
