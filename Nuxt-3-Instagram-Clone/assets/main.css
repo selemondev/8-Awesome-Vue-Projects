@@ -49,4 +49,8 @@
     .transition-effect {
         @apply transition duration-200 ease-in
     }
+
+    .navbar-search {
+        @apply appearance-none focus:outline-none py-1.5 px-2 w-28 rounded-md bg-gray-200 placeholder-gray-500 focus:ring-1 focus:ring-[#ec5761] dark:text-white dark:bg-gray-800 lg:w-72
+    }
 }
