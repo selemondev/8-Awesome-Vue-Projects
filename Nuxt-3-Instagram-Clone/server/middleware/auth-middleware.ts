@@ -1,8 +1,7 @@
-import { IncomingMessage, ServerResponse } from "http";
-
-export default async (req: IncomingMessage, res: ServerResponse) => {
+export default defineEventHandler(async (event) => {
+    const body = await readBody(event)
     // @ts-ignore
-    const userCookie = useCookie(req, "userCookie");
+    const userCookie = useCookie(body, "userCookie");
     //@ts-ignore
     req.user = userCookie;
-}
+});
