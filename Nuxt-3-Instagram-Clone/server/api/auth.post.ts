@@ -1,9 +1,8 @@
 export default defineEventHandler(async (event) => {
-    const body = await readBody(event)
     // @ts-ignore
-    const { user } = await useBody(body);
+    const { user } = await useBody(event);
     // @ts-ignore
-    req.user = user;
+    event = user;
 
     return { updated: true }
 })
