@@ -2,7 +2,12 @@
 import useVuelidate from "@vuelidate/core";
 import { minLength, helpers, required, email } from "@vuelidate/validators";
 import { ref, reactive, computed } from "vue";
-const formData = reactive({
+import { loginUser } from "~~/composables/firebaseAuth";
+interface credentials {
+    email: string,
+    password: string
+}
+const formData = reactive<credentials>({
     email: "",
     password: "",
 });
@@ -15,12 +20,14 @@ const rules = computed(() => {
 });
 
 const v$ = useVuelidate(rules, formData);
-
+const loginLoading = ref(false);
 const handleSubmit = async () => {
     const result = await v$.value.$validate();
 
     if (result) {
-
+        loginLoading.value = true;
+        await loginUser(formData.email, formData.password);
+        loginLoading.value = false;
     }
 }
 </script>
@@ -56,7 +63,7 @@ const handleSubmit = async () => {
 
                 <div>
                     <button type="submit" class="form-btn">
-                        Sign In
+                       {{ loginLoading ? "Signing In..." : "Sign In" }}
                     </button>
                 </div>
             </form>
