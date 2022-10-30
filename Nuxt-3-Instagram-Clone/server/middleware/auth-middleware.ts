@@ -1,7 +1,6 @@
-export default defineEventHandler(async (event) => {
-    const body = await readBody(event)
-    // @ts-ignore
-    const userCookie = useCookie(body, "userCookie");
+export default defineEventHandler((event) => {
     //@ts-ignore
-    req.user = userCookie;
-});
+    const userCookie = useCookie(event, "userCookie");
+    //@ts-ignore
+    event = userCookie;
+})
