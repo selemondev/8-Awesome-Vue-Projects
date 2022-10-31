@@ -4,7 +4,7 @@ const firebaseUser = useFirebaseUser();
 <template>
     <div>
         <header>
-            <nav class="flex-between h-14 w-full border-b border-gray-200 dark:border dark:border-gray-800 px-4">
+            <nav class="flex-between top-0 z-20 h-[66px] w-full border-b border-gray-200 dark:border dark:border-gray-800 px-4 lg:h-[68px] ">
                 <div>
                     <NuxtLink to="/">
                         <Icon name="simple-icons:instagram" class="text-3xl dark:text-gray-200" />
