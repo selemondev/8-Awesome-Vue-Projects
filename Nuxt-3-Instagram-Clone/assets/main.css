@@ -35,7 +35,7 @@
     }
 
     .form-input {
-        @apply appearance-none py-2 px-2 w-full border border-gray-300 mt-2 rounded-md focus:outline-none focus:ring-1 focus:ring-[#E5515B] placeholder-gray-500 dark:bg-gray-600 dark:placeholder-gray-200 dark:border dark:border-gray-600
+        @apply appearance-none py-2 px-2 w-full border border-gray-300 mt-2 rounded-md focus:outline-none focus:ring-1 focus:ring-[#E5515B] placeholder-gray-500 dark:bg-gray-600 dark:placeholder-gray-200 dark:border dark:border-gray-600 dark:text-gray-200
     }
 
     .form-btn {
