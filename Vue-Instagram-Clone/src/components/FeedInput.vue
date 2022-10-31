@@ -2,11 +2,11 @@
 import { addDoc, collection, serverTimestamp } from "@firebase/firestore";
 import { getDownloadURL, ref as storageRef, uploadBytes } from "firebase/storage";
 import { Icon } from "@iconify/vue";
-import { auth, db } from "../firebaseConfig";
+import { auth, db, storage } from "../firebaseConfig";
 import { useToast } from "vue-toastification";
 import EmojiPicker from "vue3-emoji-picker";
 import "../../node_modules/vue3-emoji-picker/dist/style.css";
-import { ref, watchEffect } from "vue";
+import { ref } from "vue";
 import { useAuthStore } from "../stores/authStore";
 const authStore = useAuthStore();
 const inputEl = ref("");
@@ -86,19 +86,19 @@ async function sendTweet() {
                                 accept="image/*" />
                         </div>
 
-                        <div class="icon-style">
+                        <div>
                             <Icon icon="ph:chart-bar-thin" class="text-[#1d9bf0] h-6 w-6" />
                         </div>
 
-                        <div class="icon-style" @click="showEmojis = !showEmojis">
+                        <div @click="showEmojis = !showEmojis">
                             <Icon icon="ph:smiley" class="text-yellow-400 h-6 w-6" />
                         </div>
 
-                        <div class="icon-style">
+                        <div>
                             <Icon icon="ph:calendar-blank-light" class="text-orange-400 h-6 w-6" />
                         </div>
 
-                        <div v-if="showEmojis" class="absolute top-44">
+                        <div v-if="showEmojis" class="absolute top-[350px]">
                             <EmojiPicker @select="showEmoji" />
                         </div>
                     </div>
