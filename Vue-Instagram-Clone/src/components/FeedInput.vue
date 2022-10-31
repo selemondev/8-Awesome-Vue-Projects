@@ -6,7 +6,9 @@ import { auth, db } from "../firebaseConfig";
 import { useToast } from "vue-toastification";
 import EmojiPicker from "vue3-emoji-picker";
 import "../../node_modules/vue3-emoji-picker/dist/style.css";
-import { ref } from "vue";
+import { ref, watchEffect } from "vue";
+import { useAuthStore } from "../stores/authStore";
+const authStore = useAuthStore();
 const inputEl = ref("");
 const showEmojis = ref(false);
 const loading = ref(false);
@@ -14,6 +16,8 @@ const selectedImage = ref("");
 const blob = ref("");
 const toast = useToast();
 const currentUser = auth.currentUser;
+const currentImage = ref("");
+currentImage.value = authStore?.userImage;
 function showEmoji(emoji) {
     inputEl.value += emoji.i;
 };
@@ -52,12 +56,11 @@ async function sendTweet() {
 };
 </script>
 <template>
-    <div
-        :class="[loading ? ' flex overflow-y-scroll scrollbar-hide border-b dark:border-gray-800 border-gray-300 p-3 space-x-3 opacity-60' : 'flex overflow-y-scroll scrollbar-hide border-b dark:border-gray-600 border-gray-300 p-3 space-x-3']">
+    <div :class="[loading ? 'flex overflow-y-scroll scrollbar-hide border-b dark:border-gray-800 border-gray-700 p-3 space-x-3 shadow-md opacity-60' : 'flex overflow-y-scroll scrollbar-hide border-b dark:bg-gray-800 dark:border-gray-800 border-gray-200 p-3 shadow-md space-x-3']">
         <div>
-            <img :src="auth.currentUser.photoURL" class="h-11 w-11 rounded-full mr-4" />
+            <img :src="currentImage" class="h-11 w-11 rounded-full mr-4" />
         </div>
-        <div class="w-full divide-y dark:divide-gray-800 divide-gray-800">
+        <div class="w-full divide-y dark:divide-gray-600 divide-gray-200">
             <div>
                 <textarea v-model="inputEl" placeholder="What's happening?"
                     class="w-full min-h-[52px] text-lg tracking-wide bg-transparent outline-none placeholder-gray-500 dark:placeholder-gray-400 dark:text-white text-black" />
@@ -73,26 +76,26 @@ async function sendTweet() {
             </div>
 
             <div v-if="!loading">
-                <div class="flex justify-between items-center pt-2">
-                    <div class="flex items-center">
+                <div class="flex-between pt-2">
+                    <div class="flex-center space-x-4">
                         <div>
                             <label for="fileUpload">
-                                <Icon icon="heroicons-outline:photograph" class="icon-style text-[#1D9BF0] h-[22px]" />
+                                <Icon icon="heroicons-outline:photograph" class="text-green-400 h-6 w-6" />
                             </label>
                             <input type="file" @change="fileUpload" hidden name="fileUpload" id="fileUpload"
                                 accept="image/*" />
                         </div>
 
                         <div class="icon-style">
-                            <Icon icon="ph:chart-bar-thin" class="text-[#1d9bf0] h-[22px]" />
+                            <Icon icon="ph:chart-bar-thin" class="text-[#1d9bf0] h-6 w-6" />
                         </div>
 
                         <div class="icon-style" @click="showEmojis = !showEmojis">
-                            <Icon icon="ph:smiley" class="text-[#1d9bf0] h-[22px]" />
+                            <Icon icon="ph:smiley" class="text-yellow-400 h-6 w-6" />
                         </div>
 
                         <div class="icon-style">
-                            <Icon icon="ph:calendar-blank-light" class="text-[#1d9bf0] h-[22px]" />
+                            <Icon icon="ph:calendar-blank-light" class="text-orange-400 h-6 w-6" />
                         </div>
 
                         <div v-if="showEmojis" class="absolute top-44">
@@ -101,8 +104,8 @@ async function sendTweet() {
                     </div>
                     <div>
                         <button :disabled="!inputEl"
-                            class="bg-[#1d9bf0] text-white rounded-full shadow-md hover:bg-[#1a8cd8] disabled:hover:bg-[#1d9bf0] disabled:opacity-50 disabled:cursor-default px-4 py-1.5 font-bold"
-                            @click="sendTweet()">Tweet</button>
+                            class="bg-[#ec5761] text-white rounded-full shadow-md hover:bg-[#f14651] disabled:hover:bg-[#ec5761] disabled:opacity-50 disabled:cursor-default px-4 py-1.5 font-bold"
+                            @click="sendTweet()">Post</button>
                     </div>
                 </div>
             </div>
