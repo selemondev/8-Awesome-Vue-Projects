@@ -289,6 +289,11 @@
   resolved "https://registry.yarnpkg.com/@esbuild/linux-loong64/-/linux-loong64-0.15.12.tgz#475b33a2631a3d8ca8aa95ee127f9a61d95bf9c1"
   integrity sha512-tZEowDjvU7O7I04GYvWQOS4yyP9E/7YlsB0jjw1Ycukgr2ycEzKyIk5tms5WnLBymaewc6VmRKnn5IJWgK4eFw==
 
+"@faker-js/faker@^7.6.0":
+  version "7.6.0"
+  resolved "https://registry.npmjs.org/@faker-js/faker/-/faker-7.6.0.tgz"
+  integrity sha512-XK6BTq1NDMo9Xqw/YkYyGjSsg44fbNwYRx7QK2CuoQgyy+f1rrTDHoExVM5PsyXCtfl2vs2vVJ0MN0yN6LppRw==
+
 "@firebase/analytics-compat@0.1.17":
   version "0.1.17"
   resolved "https://registry.npmjs.org/@firebase/analytics-compat/-/analytics-compat-0.1.17.tgz"
@@ -695,12 +700,12 @@
 
 "@iconify/types@^2.0.0":
   version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@iconify/types/-/types-2.0.0.tgz#ab0e9ea681d6c8a1214f30cd741fe3a20cc57f57"
+  resolved "https://registry.npmjs.org/@iconify/types/-/types-2.0.0.tgz"
   integrity sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==
 
 "@iconify/vue@^4.0.0":
   version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@iconify/vue/-/vue-4.0.0.tgz#f5165d31b33947129e0e642029dc736b10313cf2"
+  resolved "https://registry.npmjs.org/@iconify/vue/-/vue-4.0.0.tgz"
   integrity sha512-73z81Yf2HISfehu3qvN9GqL1OnUO7wEMKkiFwVGJ2pqAdGCR8FrVylhRhka+6U+gFLlng0ynnT20svk3jJYwow==
   dependencies:
     "@iconify/types" "^2.0.0"
@@ -945,7 +950,7 @@
 
 "@nuxtjs/color-mode@^3.1.8":
   version "3.1.8"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/color-mode/-/color-mode-3.1.8.tgz#58f3e5401028fe0c75088e9d2fdc5c7778d2b720"
+  resolved "https://registry.npmjs.org/@nuxtjs/color-mode/-/color-mode-3.1.8.tgz"
   integrity sha512-ahgjmSzpjTpaxvyyGA/1wD2rNcSFXiqs3/A/GEllB1s4BboJVnBIqkwIQpAguq7IDVZG2tMAvqmnZHSfwrI3IA==
   dependencies:
     "@nuxt/kit" "^3.0.0-rc.9"
@@ -3906,7 +3911,7 @@ nuxi@3.0.0-rc.12:
 
 nuxt-icon@^0.1.7:
   version "0.1.7"
-  resolved "https://registry.yarnpkg.com/nuxt-icon/-/nuxt-icon-0.1.7.tgz#af39787aba0146ced1f4eeee7eeb1658917b89e3"
+  resolved "https://registry.npmjs.org/nuxt-icon/-/nuxt-icon-0.1.7.tgz"
   integrity sha512-JQ2OKKulcDAUMiPY3Q4YaXncL5de9fiVdrgXKnNZU3Cs2VbR//RAR9xt90+hpmVzDSdEB5UXIJLnWc5uBxm/hw==
   dependencies:
     "@iconify/vue" "^4.0.0"
@@ -5102,6 +5107,11 @@ tailwind-config-viewer@^1.7.2:
     open "^7.0.4"
     portfinder "^1.0.26"
     replace-in-file "^6.1.0"
+
+tailwind-scrollbar-hide@^1.1.7:
+  version "1.1.7"
+  resolved "https://registry.yarnpkg.com/tailwind-scrollbar-hide/-/tailwind-scrollbar-hide-1.1.7.tgz#90b481fb2e204030e3919427416650c54f56f847"
+  integrity sha512-X324n9OtpTmOMqEgDUEA/RgLrNfBF/jwJdctaPZDzB3mppxJk7TLIDmOreEDm1Bq4R9LSPu4Epf8VSdovNU+iA==
 
 tailwindcss@^3.2.0, tailwindcss@^3.2.1:
   version "3.2.1"
