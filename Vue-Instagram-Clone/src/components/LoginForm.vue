@@ -43,7 +43,7 @@ const handleSubmit = async () => {
 
 <template>
     <div class="grid-center">
-        <div class="max-w-sm w-72 mt-12 md:w-80 md:mt-20">
+        <div class="max-w-sm w-72 mt-24 md:w-80 md:mt-32">
             <form @submit.prevent="handleSubmit()"
                 class="w-full shadow-md rounded-md py-4 px-6 border border-gray-200 dark:bg-gray-800/75 dark:border dark:border-gray-900">
                 <div class="grid-center">

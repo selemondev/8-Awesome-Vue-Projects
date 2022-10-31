@@ -39,6 +39,7 @@ const props = defineProps({
         type: Object
     }
 });
+console.log(props.media)
 const postComments = async () => {
     await addDoc(collection(db, "posts", props.id, "comments"), {
         id: auth.currentUser?.uid,
@@ -88,7 +89,7 @@ const likePost = async () => {
 </script>
 <template>
     <main>
-        <div class="bg-white my-6 border border-gray-200 rounded-md">
+        <div class="bg-white my-6 border border-gray-200 rounded-md dark:bg-gray-800 dark:border-none dark:text-white">
             <div class="flex justify-between items-center p-2 border-b border-gray-200">
                 <div class="flex items-center">
                     <img :src="props.profile" alt="Image" class="h-10 w-10 rounded-full">
@@ -142,19 +143,19 @@ const likePost = async () => {
                 <timeago :datetime="props?.timeStamp?.toDate()" :auto-update="60"></timeago>
             </div>
             <!-- comment input -->
-            <div class="flex justify-between items-center p-2">
+            <div class="flex-between p-2">
                 <div class="flex items-center space-x-2">
                     <div>
                         <Icon icon="ph:smiley" class="w-7 h-7" />
                     </div>
                     <div>
                         <input type="text" placeholder="Add a comment.."
-                            class="py-2 px-2 w-full appearance-none focus:outline-none" v-model="comment">
+                            class="py-2 px-2 w-full appearance-none focus:outline-none rounded-md bg-white dark:placeholder-gray-400 dark:bg-gray-600" v-model="comment">
                     </div>
                 </div>
                 <div>
                     <button :disabled="!comment"
-                        class="bg-[#1d9bf0] text-white rounded-full shadow-md hover:bg-[#1a8cd8] disabled:hover:bg-[#1d9bf0] disabled:opacity-50 disabled:cursor-default py-1.5 px-4 font-bold"
+                        class="bg-[#F14651] text-white rounded-full shadow-md hover:bg-[#F14651] disabled:hover:bg-[#1d9bf0] disabled:opacity-50 disabled:cursor-default py-1.5 px-4 font-bold"
                         @click="postComments()">Post</button>
                 </div>
             </div>

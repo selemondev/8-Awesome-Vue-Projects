@@ -9,7 +9,7 @@ import { ref, watchEffect } from "vue";
 const postData = ref([]);
 watchEffect(() => {
     const postReference = collection(db, "posts");
-    const q = query(postReference, orderBy("timestamp", "desc"));
+    const q = query(postReference, orderBy("timeStamp", "desc"));
     const unsub = onSnapshot(q, querySnapshot => {
         let posts = [];
         querySnapshot.forEach(doc => {
