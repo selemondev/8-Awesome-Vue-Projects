@@ -10,16 +10,12 @@ const icons = [
     },
     {
         id: 3,
-        icon: "ic:outline-add-circle-outline"
-    },
-    {
-        id: 4,
         icon: "ph:heart"
     }
 ]
 </script>
 <template>
-    <div>
+    <div class="flex-center space-x-2">
         <div class="flex-center space-x-2 lg:hidden">
             <Icon name="material-symbols:home-outline-sharp" class="w-7 h-7 cursor-pointer dark:text-gray-300" />
             <Icon name="ph:messenger-logo" class="w-7 h-7 cursor-pointer dark:text-gray-300" />
