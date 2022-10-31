@@ -7,6 +7,7 @@ export const useAuthStore = defineStore({
     state: () => ({
         userToken: JSON.parse(localStorage.getItem("token")),
         userImage: JSON.parse(localStorage.getItem("profile")),
+        username: JSON.parse(localStorage.getItem("username"))
     }),
 
     actions: {
@@ -44,7 +45,11 @@ export const useAuthStore = defineStore({
         async saveProfileImage(profile) {
             this.userImage = profile;
             localStorage.setItem("profile", JSON.stringify(this.userImage));
+        },
 
+        async saveUsername(username) {
+            this.username = username;
+            localStorage.setItem("username", JSON.stringify(this.username));
         }
     }
 });

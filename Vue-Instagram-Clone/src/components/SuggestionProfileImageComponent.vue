@@ -3,6 +3,7 @@ import { getDoc, doc } from "firebase/firestore";
 import { auth, db } from "../firebaseConfig";
 import { ref, watchEffect } from "vue";
 import { useAuthStore } from "../stores/authStore";
+import { Icon } from "@iconify/vue";
 const authStore = useAuthStore();
 const authToken = auth?.currentUser?.uid;
 const firebaseData = ref([]);
@@ -14,8 +15,9 @@ watchEffect(() => {
             firebaseData.value.push(docSnap.data());
             firebaseData.value.forEach((data) => {
                 profileImage.value = data.avatar;
-                authStore.saveProfileImage(profileImage.value)
+                authStore.saveProfileImage(profileImage.value);
                 username.value = data.username;
+                authStore.saveUsername(username.value)
             })
         }
     });

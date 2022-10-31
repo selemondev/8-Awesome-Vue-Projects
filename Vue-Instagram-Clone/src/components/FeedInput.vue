@@ -39,8 +39,8 @@ async function sendTweet() {
     sentImage = downloadImageUrl
     await addDoc(collection(db, "posts"), {
         id: currentUser.uid,
-        username: currentUser.displayName,
-        profile: currentUser.photoURL,
+        username: authStore?.username,
+        profile: currentImage.value,
         text: inputEl.value,
         media: sentImage || "",
         timeStamp: serverTimestamp(),
