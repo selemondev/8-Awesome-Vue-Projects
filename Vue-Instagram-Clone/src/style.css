@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply w-full min-h-screen font-Roboto bg-white dark:bg-gray-900
+    }
+}
+
+@layer components {
+    .grid-center {
+        @apply grid place-items-center
+    }
+
+    .flex-center {
+        @apply flex justify-center items-center
+    }
+
+    .flex-between {
+        @apply flex justify-between items-center
+    }
+
+    .flex-around {
+        @apply flex justify-around items-center
+    }
+
+    .navbar-btn {
+        @apply py-2 px-4 rounded-md bg-[#ec5761] hover:bg-[#E5515B] text-white transition duration-200 ease-in
+    }
+
+    .form-label {
+        @apply block mt-2 dark:text-white
+    }
+
+    .form-input {
+        @apply appearance-none py-2 px-2 w-full border border-gray-300 mt-2 rounded-md focus:outline-none focus:ring-1 focus:ring-[#E5515B] placeholder-gray-500 dark:bg-gray-600 dark:placeholder-gray-200 dark:border dark:border-gray-600 dark:text-gray-200
+    }
+
+    .form-btn {
+        @apply w-full py-2 text-white bg-[#ec5761] hover:bg-[#E5515B] rounded-md transition-effect
+    }
+
+    .error {
+        @apply text-red-500 my-2 font-bold dark:font-normal
+    }
+
+    .transition-effect {
+        @apply transition duration-200 ease-in
+    }
+
+    .navbar-search {
+        @apply appearance-none focus:outline-none py-1.5 px-2 w-28 rounded-md bg-gray-200 placeholder-gray-500 focus:ring-1 focus:ring-[#ec5761] dark:text-white dark:bg-gray-800 lg:w-72
+    }
+}
