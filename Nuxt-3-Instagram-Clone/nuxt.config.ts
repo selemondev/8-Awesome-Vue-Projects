@@ -1,6 +1,6 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/color-mode", "nuxt-icon", "@pinia/nuxt"],
+  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/color-mode", "nuxt-icon"],
   css: ["@/assets/main.css"],
   colorMode: {
     classSuffix: ""
@@ -23,6 +23,6 @@ export default defineNuxtConfig({
   },
 
   build: {
-    transpile: ["@headlessui/vue", "@headlessui/tailwindcss"]
+    transpile: ["@headlessui/vue" ]
   }
 });

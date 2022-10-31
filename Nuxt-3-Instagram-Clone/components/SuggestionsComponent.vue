@@ -21,7 +21,7 @@ Array.from({ length: 20 }).forEach(() => {
         </div>
         <div class="mt-5 flex-between">
             <p class="font-bold text-gray-400 text-base">Suggestions For You</p>
-            <p class="dark:text-white">See All</p>
+            <p class="dark:text-white cursor-pointer">See All</p>
         </div>
 
         <div v-for="suggestion in userSuggestions" :key="suggestion.userId" class="mt-4 space-y-12">

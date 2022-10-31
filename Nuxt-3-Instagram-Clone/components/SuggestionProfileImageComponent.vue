@@ -1,5 +1,6 @@
 <script setup>
 import { getDoc, doc, getFirestore } from "firebase/firestore";
+import { useFirebaseUser } from "../composables/state"
 const firebaseUser = useFirebaseUser();
 const db = getFirestore();
 const authToken = ref("");
