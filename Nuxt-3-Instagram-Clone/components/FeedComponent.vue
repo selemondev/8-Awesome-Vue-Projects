@@ -8,7 +8,7 @@
             </section>
             <section class="hidden xl:inline-grid md:col-span-1">
                 <main class="fixed top-16">
-
+                    <SuggestionsComponent/>
                 </main>
             </section>
         </main>
