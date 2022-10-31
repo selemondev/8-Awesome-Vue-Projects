@@ -37,7 +37,7 @@ export const initUser = async () => {
     const userCookie: any = useCookie("userCookie");
     onAuthStateChanged(auth, (user) => {
         if (user) {
-            router.push("/profile")
+            router.push("/feed")
         } else {
             router.push("/")
         };

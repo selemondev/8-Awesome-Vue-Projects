@@ -16,6 +16,7 @@ const firebaseUser = useFirebaseUser();
                 </div>
                 <div class="flex-center space-x-3">
                     <NavbarIcons/>
+                    <ProfileImageComponent/>
                     <ColorModeSwitch />
                     <button v-if="!firebaseUser" class="navbar-btn">Sign In</button>
                 </div>
