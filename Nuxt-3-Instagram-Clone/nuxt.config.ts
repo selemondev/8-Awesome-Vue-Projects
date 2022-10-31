@@ -1,6 +1,6 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/color-mode", "nuxt-icon"],
+  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/color-mode", "nuxt-icon", "@pinia/nuxt"],
   css: ["@/assets/main.css"],
   colorMode: {
     classSuffix: ""
@@ -20,5 +20,9 @@ export default defineNuxtConfig({
       FIREBASE_MESSAGING_SENDER_ID: process.env.FIREBASE_MESSAGING_SENDER_ID,
       FIREBASE_APP_ID: process.env.FIREBASE_APP_ID
     }
+  },
+
+  build: {
+    transpile: ["@headlessui/vue", "@headlessui/tailwindcss"]
   }
 });
