@@ -4,6 +4,8 @@ import { auth, db } from "../firebaseConfig";
 import { ref, watchEffect } from "vue";
 import { useAuthStore } from "../stores/authStore";
 import { Icon } from "@iconify/vue";
+import { useRouter } from "vue-router";
+const router = useRouter();
 const authStore = useAuthStore();
 const authToken = auth?.currentUser?.uid;
 const firebaseData = ref([]);
@@ -22,6 +24,10 @@ watchEffect(() => {
         }
     });
 });
+const handleClick = async () => {
+    await authStore.signOutUser();
+    router.push("/")
+};
 </script>
 <template>
     <div class="flex-between px-3">
@@ -36,6 +42,6 @@ watchEffect(() => {
             </div>
             <h3 class="dark:text-white">{{ username }}</h3>
         </div>
-        <p class="text-blue-500">Sign Out</p>
+        <p class="text-blue-500 hover:text-blue-700 cursor-pointer" @click="handleClick">Sign Out</p>
     </div>
 </template>

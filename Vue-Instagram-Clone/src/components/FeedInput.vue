@@ -2,11 +2,13 @@
 import { addDoc, collection, serverTimestamp } from "@firebase/firestore";
 import { getDownloadURL, ref as storageRef, uploadBytes } from "firebase/storage";
 import { Icon } from "@iconify/vue";
+import useVuelidate from "@vuelidate/core";
+import { required, helpers } from "@vuelidate/validators";
 import { auth, db, storage } from "../firebaseConfig";
 import { useToast } from "vue-toastification";
 import EmojiPicker from "vue3-emoji-picker";
 import "../../node_modules/vue3-emoji-picker/dist/style.css";
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useAuthStore } from "../stores/authStore";
 const authStore = useAuthStore();
 const inputEl = ref("");
@@ -18,6 +20,13 @@ const toast = useToast();
 const currentUser = auth.currentUser;
 const currentImage = ref("");
 currentImage.value = authStore?.userImage;
+const rules = computed(() => {
+    return {
+        selectedImage: { required: helpers.withMessage("Image is required", required) }
+    }
+});
+
+const v$ = useVuelidate(rules, selectedImage.value)
 function showEmoji(emoji) {
     inputEl.value += emoji.i;
 };
@@ -31,32 +40,36 @@ function removeSelectedImage() {
     selectedImage.value = null;
 };
 async function sendTweet() {
-    loading.value = true;
-    let sentImage;
-    const imageReference = storageRef(storage, `images/${new Date().getTime()} - ${selectedImage.name}`);
-    const snap = await uploadBytes(imageReference, selectedImage.value);
-    const downloadImageUrl = await getDownloadURL(storageRef(storage, snap.ref.fullPath));
-    sentImage = downloadImageUrl
-    await addDoc(collection(db, "posts"), {
-        id: currentUser.uid,
-        username: authStore?.username,
-        profile: currentImage.value,
-        text: inputEl.value,
-        media: sentImage || "",
-        timeStamp: serverTimestamp(),
-    });
-    loading.value = false;
-    setTimeout(() => {
-        inputEl.value = "";
-        selectedImage.value = "";
-    }, 1000);
-    toast.success("Post Sent", {
-        timeout: 2000,
-    })
+    const response = await v$.value.$validate();
+    if (response) {
+        loading.value = true;
+        let sentImage;
+        const imageReference = storageRef(storage, `images/${new Date().getTime()} - ${selectedImage.name}`);
+        const snap = await uploadBytes(imageReference, selectedImage.value);
+        const downloadImageUrl = await getDownloadURL(storageRef(storage, snap.ref.fullPath));
+        sentImage = downloadImageUrl
+        await addDoc(collection(db, "posts"), {
+            id: currentUser.uid,
+            username: authStore?.username,
+            profile: currentImage.value,
+            text: inputEl.value,
+            media: sentImage || "",
+            timeStamp: serverTimestamp(),
+        });
+        loading.value = false;
+        setTimeout(() => {
+            inputEl.value = "";
+            selectedImage.value = "";
+        }, 1000);
+        toast.success("Post Sent", {
+            timeout: 2000,
+        })
+    }
 };
 </script>
 <template>
-    <div :class="[loading ? 'flex overflow-y-scroll scrollbar-hide border-b dark:border-gray-800 border-gray-700 p-3 space-x-3 shadow-md opacity-60' : 'flex overflow-y-scroll scrollbar-hide border-b dark:bg-gray-800 dark:border-gray-800 border-gray-200 p-3 shadow-md space-x-3']">
+    <div
+        :class="[loading ? 'flex overflow-y-scroll scrollbar-hide border-b dark:border-gray-800 border-gray-700 p-3 space-x-3 shadow-md opacity-60' : 'flex overflow-y-scroll scrollbar-hide border-b dark:bg-gray-800 dark:border-gray-800 border-gray-200 p-3 shadow-md space-x-3']">
         <div>
             <img :src="currentImage" class="h-11 w-11 rounded-full mr-4" />
         </div>
@@ -84,6 +97,7 @@ async function sendTweet() {
                             </label>
                             <input type="file" @change="fileUpload" hidden name="fileUpload" id="fileUpload"
                                 accept="image/*" />
+                            <p class="error" v-if="v$.selectedImage.$error">{{ v$.selectedImage.$errors[0].$message }}</p>
                         </div>
 
                         <div>
