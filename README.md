@@ -31,3 +31,11 @@ A Vue Coinbase project built with Vue 3, TypeScript, heroicons/vue, millify and 
 
 ![Coinbase Hero](./Project%20Images/Vue-Coinbase-Hero.png)
 ![Coinbase Coins](./Project%20Images/Vue-Coinbase-Coins.png)
+
+
+## 5. Vue Pinia Store
+
+A shopping cart built with Vue 3, Pinia, Vue-toastification, heroicons/vue and vueuse/core. This project will enable you to learn and understand how to use Pinia by building a basic shopping cart with all its functionalities.
+
+![Pinia homePage](./Project%20Images/Vue-Pinia-Store.png)
+
