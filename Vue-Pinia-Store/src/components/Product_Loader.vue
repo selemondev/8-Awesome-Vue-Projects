@@ -1,6 +1,3 @@
-<script setup>
-</script>
-
 <template>
     <main class="flex-center flex-wrap">
         <div class="px-4 border border-gray-200 rounded-sm w-72 m-2 md:w-80  md:m-10">
