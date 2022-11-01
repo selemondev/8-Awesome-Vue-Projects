@@ -61,5 +61,37 @@ A Blog built with Nuxt 3, TailwindCss and Nuxt Content module. This project will
 ![Nuxt 3 Blog](./Project%20Images/Nuxt3-Blog.png)
 
 
+
+
+
+## 🛠️ Installation Steps
+
+- [Fork](https://github.com/selemondev/8-Awesome-Vue-Projects/fork) the project. Click on the <a href="https://github.com/selemondev/8-Awesome-Vue-Projects/fork"><img src="https://i.imgur.com/G4z1kEe.png" height="15" width="15"></a> icon in the top right to get started.
+
+- Use these commands in your git bash to make a clone of the project in your pc.
+
+### SSH [Github Docs](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
+
+```bash
+$ git clone git@github.com:username/8-Awesome-Vue-Projects
+```
+
+### GitHub CLI
+
+```bash
+$ gh repo clone username/8-Awesome-Vue-Projects
+```
+
+### HTTPS
+
+```bash
+$ git clone https://github.com/username/8-Awesome-Vue-Projects
+```
+
+## 🙏🏽 Support
+
+This project needs a star️ from you. Don't forget to leave a star 🌟
+
+
 ### I hope you find my projects to be educative and fun. If you encounter an error or have any improvements to make to the projects, don't be shy, go ahead and create a pull request. Happy coding ✨
 
