@@ -135,7 +135,7 @@ const handleLogOut = async () => {
 
                         <!-- Contacts -->
                         <div class="bg-grey-lighter overflow-auto" v-for="contact in filteredUsers">
-                            <Sidebar :currentUserId="currentUser" :contact=contact :userId="contact.uid"
+                            <Sidebar :active="contact.online" :currentUserId="currentUser" :contact=contact :userId="contact.uid"
                                 :avatar="contact.avatar" :username="contact.username" @changeChat="selectUser" />
                         </div>
 

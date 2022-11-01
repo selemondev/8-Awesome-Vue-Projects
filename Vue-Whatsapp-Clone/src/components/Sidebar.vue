@@ -5,6 +5,9 @@ import { ref, watchEffect } from 'vue';
 import Placeholder from "../assets/Placeholder.png";
 const lastMessage = ref([]);
 const props = defineProps({
+    active: {
+        type: Boolean
+    },
     currentUserId: {
         type: String
     },
@@ -34,9 +37,11 @@ stopRunning();
 <template>
     <div @click="$emit('changeChat', props.id, props.username, props.avatar, props.contact)"
         class="space-x-3 flex-center bg-grey-light cursor-pointer my-2 hover:bg-gray-800 md:px-2 md:py-1">
-        <div v-if="props.avatar">
+        <div v-if="props.avatar" class="relative">
             <img v-if="props.avatar" class="h-12 w-12 rounded-full m-2 lg:m-0" :src="props.avatar"
                 :alt="props.username" />
+            <span v-if="props.active" class="bottom-0 left-8 absolute  w-3.5 h-3.5 bg-green-400 rounded-full"></span>
+            <span v-else class="bottom-0 left-8 absolute w-3.5 h-3.5 bg-red-400 rounded-full"></span>
         </div>
 
         <div v-else>
