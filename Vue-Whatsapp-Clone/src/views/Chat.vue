@@ -51,6 +51,7 @@ watchEffect(() => {
     })
 });
 
+
 const selectUser = async (userId, username, avatar, contact) => {
     contactContainer.value = contact;
     selectedUser.value = contactContainer.value.uid;
@@ -88,7 +89,7 @@ const handleLogOut = async () => {
         createdAt: Timestamp.fromDate(new Date()),
     });
     authStore.logOut();
-    router.push("/")
+    router.push("/");
 }
 </script>
 <template>

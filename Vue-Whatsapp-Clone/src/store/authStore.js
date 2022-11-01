@@ -64,8 +64,8 @@ export const useAuthStore = defineStore({
     },
     async logOut() {
       await signOut(auth);
-      localStorage.removeItem("user");
       this.userData = null;
+      localStorage.removeItem("user");
     },
   },
 });

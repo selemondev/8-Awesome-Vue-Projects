@@ -6,7 +6,7 @@ import { auth, db, storage } from "../firebaseConfig";
 import { useToast } from "vue-toastification";
 import EmojiPicker from "vue3-emoji-picker";
 import "../../node_modules/vue3-emoji-picker/dist/style.css";
-import { ref } from "vue";
+import { ref, watchEffect } from "vue";
 import { useAuthStore } from "../stores/authStore";
 const authStore = useAuthStore();
 const inputEl = ref("");
@@ -17,7 +17,10 @@ const blob = ref("");
 const toast = useToast();
 const currentUser = auth.currentUser;
 const currentImage = ref("");
-currentImage.value = authStore?.userImage;
+watchEffect(() => {
+    currentImage.value = authStore?.userImage;
+    console.log(currentImage.value)
+});
 function showEmoji(emoji) {
     inputEl.value += emoji.i;
 };
