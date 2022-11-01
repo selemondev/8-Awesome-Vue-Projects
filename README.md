@@ -93,7 +93,7 @@ $ git clone https://github.com/username/8-Awesome-Vue-Projects.git
 This project needs a star️ from you. Don't forget to leave a star 🌟
 
 
-## 🔗 Come say hi 👋
+## 👋 Come say hi
 [![twitter](https://img.shields.io/badge/twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/selemondev)
 
 
