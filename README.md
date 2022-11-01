@@ -98,5 +98,5 @@ This project needs a star️ from you. Don't forget to leave a star 🌟
 
 
 ## ✨ Conclusion
-I hope you find my projects to be educative and fun. If you encounter an error or have any improvements to make to the projects, don't be shy, go ahead and create a pull request. Happy coding ✨
+I hope you find my projects to be educative and fun. If you encounter errors or have any improvements to make to the projects, don't be shy, go ahead and create a pull request. Happy coding ✨
 
