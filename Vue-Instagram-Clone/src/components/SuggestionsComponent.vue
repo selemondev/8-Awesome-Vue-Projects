@@ -2,8 +2,24 @@
 import { faker } from "@faker-js/faker";
 import SuggestionComponent from "../components/SuggestionComponent.vue";
 import SuggestionProfileImageComponent from "./SuggestionProfileImageComponent.vue";
-import { ref } from "vue";
+import { ref, watchEffect } from "vue";
 const userSuggestions = ref([]);
+const scrolled = ref(false);
+const handleScroll = () => {
+    if (scrollY > 0) {
+        scrolled.value = true;
+    } else {
+        scrolled.value = false;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll)
+};
+
+watchEffect(() => {
+    handleScroll();
+})
 const createRandomUsers = () => {
     return {
         userId: faker.datatype.uuid(),
@@ -17,7 +33,7 @@ Array.from({ length: 20 }).forEach(() => {
 </script>
 
 <template>
-    <div class="py-6 px-6 ml-1 mt-6 rounded-md border border-gray-200 w-96 dark:border-none dark:bg-gray-800">
+    <div :class="[scrolled ? 'py-6 px-6 ml-1 rounded-md border border-gray-200 w-96 dark:border-none dark:bg-gray-800' : 'py-6 px-6 ml-1 mt-[27px] rounded-md border border-gray-200 w-96 dark:border-none dark:bg-gray-800']">
         <div>
             <SuggestionProfileImageComponent />
         </div>
