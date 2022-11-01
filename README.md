@@ -51,3 +51,5 @@ A Todo App built with Nuxt 3, TailwindCss, Firebase and Vuelidate. This project 
 
 A Todo App built with Nuxt 3, TailwindCss, Vue-toastification and Joi. This project will enable you to learn how to setup and use MongoDB with Nuxt 3.
 
+![Nuxt 3 Mongodb Todo App homePage](./Project%20Images/Nuxt3-Mongodb-Home-Page.png)
+
