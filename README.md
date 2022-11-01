@@ -8,3 +8,4 @@ A Vue Instagram clone built with Vue 3, Pinia, Firebase, and Vue-toastification.
 ### Note: The Firebase config keys are exposed intentionally!!
 
 ![Instagram Login Page](./Project%20Images/Vue-Instagram-Login-Page.png)
+![Instagram Feed Page](./Project%20Images/Vue-Instagram-Home-Page.png)
