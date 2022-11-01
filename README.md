@@ -1,7 +1,7 @@
 
 # 8 Awesome Vue Projects 🚀
 
-### Note: The Firebase config keys are exposed intentionally!!
+### Note: The Firebase and Supabase config keys are exposed intentionally!!
 
 ## 1. Vue Instagram Clone
 
@@ -17,3 +17,9 @@ A Vue Whatsapp clone built with Vue 3, Pinia, Firebase, @heroicons/vue, vuelidat
 
 ![Whatsapp Login Page](./Project%20Images/Vue-Whatsapp-Login-Page.png)
 ![Whatsapp Chat Page](./Project%20Images/Vue-Whatsapp-Chat-Page.png)
+
+## 3. Vue Netflix Clone
+
+A Vue Netflix Clone built with Vue 3, Supabase, Pinia, movieTrailer, heroicons/vue,Vue-toastification, Vuelidate, Vitest and Youtube-Vue 3. This project will enable you to learn how to use Supabase's authentication feature and how to write unit tests using Vitest. Head over to [TMDB](https://www.themoviedb.org/) and get your API KEY and add it in your `.env` file as so `VITE_API_KEY = 'YOUR_API_KEY'`.
+
+![Netflix Login Page](./Project%20Images/Netflix-Login-Page.png)
