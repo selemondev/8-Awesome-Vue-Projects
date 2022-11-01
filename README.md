@@ -61,5 +61,5 @@ A Blog built with Nuxt 3, TailwindCss and Nuxt Content module. This project will
 ![Nuxt 3 Blog](./Project%20Images/Nuxt3-Blog.png)
 
 
-## I hope you find my projects to be educative and fun. If you encounter an error or have any improvements to make to the projects, don't be shy, go ahead and create a pull request. Happy coding ✨
+### I hope you find my projects to be educative and fun. If you encounter an error or have any improvements to make to the projects, don't be shy, go ahead and create a pull request. Happy coding ✨
 
