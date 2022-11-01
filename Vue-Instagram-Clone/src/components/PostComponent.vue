@@ -39,7 +39,6 @@ const props = defineProps({
         type: Object
     }
 });
-console.log(props.media)
 const postComments = async () => {
     await addDoc(collection(db, "posts", props.id, "comments"), {
         id: auth.currentUser?.uid,
@@ -90,16 +89,18 @@ const likePost = async () => {
 <template>
     <main>
         <div class="bg-white my-6 border border-gray-200 rounded-md dark:bg-gray-800 dark:border-none dark:text-white">
-            <div class="flex justify-between items-center p-2 border-b border-gray-200">
+            <div
+                class="flex justify-between items-center p-2 border-b border-gray-200 dark:border-b dark:border-gray-700">
                 <div class="flex items-center">
                     <img :src="props.profile" alt="Image" class="h-10 w-10 rounded-full">
                     <h4 class="font-bold pl-3">{{ props.username }}</h4>
                 </div>
                 <Icon icon="mdi:dots-horizontal" class="h-6 w-6 text-gray-500" />
             </div>
-            <div>
+            <div class="grid-center w-full" v-if="props?.media">
                 <img :src="props.media" :alt="props.username" class="w-full object-cover">
             </div>
+
             <div class="flex justify-between pt-3 px-3">
                 <div class="flex space-x-4">
                     <div>
@@ -139,8 +140,8 @@ const likePost = async () => {
                         :comment="comment.comment" :time="comment.timeStamp" />
                 </div>
             </div>
-            <div class="ml-4 text-gray-400 text-xs lg:text-base font-bold">
-                <timeago :datetime="props?.timeStamp?.toDate()" :auto-update="60"></timeago>
+            <div class="ml-4 text-gray-400 text-xs lg:text-base font-bold" v-if="props?.timeStamp">
+                <timeago :datetime="props.timeStamp?.toDate()" :auto-update="60"></timeago>
             </div>
             <!-- comment input -->
             <div class="flex-between p-2">
@@ -150,7 +151,8 @@ const likePost = async () => {
                     </div>
                     <div>
                         <input type="text" placeholder="Add a comment.."
-                            class="py-2 px-2 w-full appearance-none focus:outline-none rounded-md bg-white dark:placeholder-gray-400 dark:bg-gray-600" v-model="comment">
+                            class="py-2 px-2 w-full appearance-none focus:outline-none rounded-md bg-white dark:placeholder-gray-400 dark:bg-gray-600"
+                            v-model="comment">
                     </div>
                 </div>
                 <div>

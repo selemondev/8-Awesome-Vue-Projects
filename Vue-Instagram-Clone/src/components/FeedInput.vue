@@ -2,13 +2,11 @@
 import { addDoc, collection, serverTimestamp } from "@firebase/firestore";
 import { getDownloadURL, ref as storageRef, uploadBytes } from "firebase/storage";
 import { Icon } from "@iconify/vue";
-import useVuelidate from "@vuelidate/core";
-import { required, helpers } from "@vuelidate/validators";
 import { auth, db, storage } from "../firebaseConfig";
 import { useToast } from "vue-toastification";
 import EmojiPicker from "vue3-emoji-picker";
 import "../../node_modules/vue3-emoji-picker/dist/style.css";
-import { ref, computed } from "vue";
+import { ref } from "vue";
 import { useAuthStore } from "../stores/authStore";
 const authStore = useAuthStore();
 const inputEl = ref("");
@@ -20,13 +18,6 @@ const toast = useToast();
 const currentUser = auth.currentUser;
 const currentImage = ref("");
 currentImage.value = authStore?.userImage;
-const rules = computed(() => {
-    return {
-        selectedImage: { required: helpers.withMessage("Image is required", required) }
-    }
-});
-
-const v$ = useVuelidate(rules, selectedImage.value)
 function showEmoji(emoji) {
     inputEl.value += emoji.i;
 };
@@ -39,9 +30,8 @@ const fileUpload = () => {
 function removeSelectedImage() {
     selectedImage.value = null;
 };
-async function sendTweet() {
-    const response = await v$.value.$validate();
-    if (response) {
+async function sendPost() {
+    if (selectedImage.value) {
         loading.value = true;
         let sentImage;
         const imageReference = storageRef(storage, `images/${new Date().getTime()} - ${selectedImage.name}`);
@@ -61,8 +51,12 @@ async function sendTweet() {
             inputEl.value = "";
             selectedImage.value = "";
         }, 1000);
-        toast.success("Post Sent", {
+        toast.success("Post sent successfully", {
             timeout: 2000,
+        })
+    } else {
+        toast.error("Please select an image", {
+            timeout: 3000,
         })
     }
 };
@@ -97,7 +91,6 @@ async function sendTweet() {
                             </label>
                             <input type="file" @change="fileUpload" hidden name="fileUpload" id="fileUpload"
                                 accept="image/*" />
-                            <p class="error" v-if="v$.selectedImage.$error">{{ v$.selectedImage.$errors[0].$message }}</p>
                         </div>
 
                         <div>
@@ -119,7 +112,7 @@ async function sendTweet() {
                     <div>
                         <button :disabled="!inputEl"
                             class="bg-[#ec5761] text-white rounded-full shadow-md hover:bg-[#f14651] disabled:hover:bg-[#ec5761] disabled:opacity-50 disabled:cursor-default px-4 py-1.5 font-bold"
-                            @click="sendTweet()">Post</button>
+                            @click="sendPost()">Post</button>
                     </div>
                 </div>
             </div>

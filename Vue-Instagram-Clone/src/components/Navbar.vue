@@ -14,7 +14,7 @@ watchEffect(() => {
 <template>
     <div>
         <header>
-            <nav class="flex-between fixed top-0 z-20 h-[66px] w-full border-b border-gray-200 dark:bg-gray-900 dark:border dark:border-gray-800 px-4 lg:h-[68px] ">
+            <nav class="flex-between fixed top-0 z-20 h-[66px] w-full border-b border-gray-200 bg-white dark:bg-gray-900 dark:border dark:border-gray-800 px-4 lg:h-[68px] ">
                 <div>
                     <router-link to="/">
                         <Icon icon="simple-icons:instagram" class="text-3xl dark:text-gray-200" />

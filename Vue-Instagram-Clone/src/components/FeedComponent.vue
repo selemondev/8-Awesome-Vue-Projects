@@ -13,7 +13,7 @@ watchEffect(() => {
     const unsub = onSnapshot(q, querySnapshot => {
         let posts = [];
         querySnapshot.forEach(doc => {
-            posts.push({ ...doc.data(), id: doc.id })
+            posts.push({ ...doc.data(), id: doc.id });
         });
         postData.value = posts;
     });
