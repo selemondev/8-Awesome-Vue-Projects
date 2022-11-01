@@ -23,3 +23,11 @@ A Vue Whatsapp clone built with Vue 3, Pinia, Firebase, @heroicons/vue, vuelidat
 A Vue Netflix Clone built with Vue 3, Supabase, Pinia, movieTrailer, heroicons/vue,Vue-toastification, Vuelidate, Vitest and Youtube-Vue 3. This project will enable you to learn how to use Supabase's authentication feature and how to write unit tests using Vitest. Head over to [TMDB](https://www.themoviedb.org/) and get your API KEY and add it in your `.env` file as so `VITE_API_KEY = 'YOUR_API_KEY'`.
 
 ![Netflix Login Page](./Project%20Images/Netflix-Login-Page.png)
+
+
+## 4. Vue Coinbase
+
+A Vue Coinbase project built with Vue 3, TypeScript, heroicons/vue, millify and vue3-smooth-scroll. This project will enable you to learn how to use Rapid Api to fetch data from one of its huge collection of APIs.
+
+![Coinbase Hero](./Project%20Images/Vue-Coinbase-Hero.png)
+![Coinbase Coins](./Project%20Images/Vue-Coinbase-Coins.png)
