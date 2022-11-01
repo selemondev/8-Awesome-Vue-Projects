@@ -53,3 +53,10 @@ A Todo App built with Nuxt 3, TailwindCss, Vue-toastification and Joi. This proj
 
 ![Nuxt 3 Mongodb Todo App homePage](./Project%20Images/Nuxt3-Mongodb-Home-Page.png)
 
+
+## 8. Nuxt 3 Blog
+
+A Blog built with Nuxt 3, TailwindCss and Nuxt Content module. This project will enable you to learn how to setup and use the Nuxt Content module to create an amazing blog.
+
+![Nuxt 3 Blog](./Project%20Images/Nuxt3-Blog.png)
+
