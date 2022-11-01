@@ -44,7 +44,7 @@ const handleSubmit = async () => {
     const id = currentUser.value > selectedUser.value ? `${currentUser.value + selectedUser.value}` : `${selectedUser.value + currentUser.value}`;
     let sentImage;
     loading.value = true;
-    if (selectedImage) {
+    if (selectedImage.value) {
         const imageReference = storageRef(storage, `images/${new Date().getTime()}`);
         const snap = await uploadBytes(imageReference, selectedImage.value);
         const downloadImageUrl = await getDownloadURL(storageRef(storage, snap.ref.fullPath));
@@ -55,7 +55,7 @@ const handleSubmit = async () => {
         from: props.currentUserId,
         to: selectedUser.value,
         createdAt: Timestamp.fromDate(new Date()),
-        media: sentImage
+        media: sentImage || ""
     });
     loading.value = false;
 

@@ -23,7 +23,7 @@ fetchCoins();
                 <div class="flex justify-between w-3/4">
                     <div class="flex items-center">
                         <img :src="coin.iconUrl" alt="coin logo"
-                            class="w-4 h-4 rounded-full self-start mr-4 object-cover md:mr-4 lg:w-6 lg:h-6" />
+                            class="w-4 h-4 rounded-full self-start mr-4 object-cover md:mr-2 lg:w-6 lg:h-6" />
                         <div class="hidden lg:block">
                             <p class="font-bold">{{ coin.name }}</p>
                             <p class="text-xs uppercase tracking-widest">

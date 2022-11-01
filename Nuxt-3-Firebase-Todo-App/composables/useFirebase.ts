@@ -1,4 +1,4 @@
-import { useLoadingState } from './useState';
+import { useLoadingState, useFirebaseUser } from './useState';
 import { doc, setDoc, getFirestore } from "firebase/firestore";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
 export const registerUser = async (email: string, password: string) => {
@@ -14,7 +14,6 @@ return response;
 
 export const loginUser = async (email: string, password: string) => {
     const auth = getAuth();
-    const db = getFirestore();
     const response = await signInWithEmailAndPassword(auth, email, password)
     return response;
 }

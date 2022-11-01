@@ -29,7 +29,7 @@ const stopRunning = watchEffect(() => {
     });
     return () => unsubscribe();
 });
-stopRunning()
+stopRunning();
 </script>
 <template>
     <div @click="$emit('changeChat', props.id, props.username, props.avatar, props.contact)"
