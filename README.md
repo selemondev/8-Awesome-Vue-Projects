@@ -85,7 +85,7 @@ $ gh repo clone username/8-Awesome-Vue-Projects
 ### HTTPS
 
 ```bash
-$ git clone https://github.com/username/8-Awesome-Vue-Projects
+$ git clone https://github.com/username/8-Awesome-Vue-Projects.git
 ```
 
 ## 🙏🏽 Support
@@ -93,5 +93,5 @@ $ git clone https://github.com/username/8-Awesome-Vue-Projects
 This project needs a star️ from you. Don't forget to leave a star 🌟
 
 
-### I hope you find my projects to be educative and fun. If you encounter an error or have any improvements to make to the projects, don't be shy, go ahead and create a pull request. Happy coding ✨
+I hope you find my projects to be educative and fun. If you encounter an error or have any improvements to make to the projects, don't be shy, go ahead and create a pull request. Happy coding ✨
 
