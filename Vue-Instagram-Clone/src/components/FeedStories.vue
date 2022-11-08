@@ -16,7 +16,7 @@ Array.from({ length: 20 }).forEach(() => {
 });
 </script>
 <template>
-    <div class="flex space-x-2 p-6 bg-white shadow-md border border-gray-200 mt-8 rounded-sm overflow-x-scroll dark:bg-gray-800 dark:text-white dark:border-none lg:scrollbar-hide lg:mt-28">
+    <div class="flex space-x-2 p-6 bg-white shadow-md border border-gray-200 mt-20 rounded-sm overflow-x-scroll dark:bg-gray-800 dark:text-white dark:border-none lg:scrollbar-hide lg:mt-28">
         <div v-for="story in stories" :key="story.userId">
             <FeedStory
             :userId="story.userId"
