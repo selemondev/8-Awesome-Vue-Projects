@@ -105,13 +105,13 @@ const handleLogOut = async () => {
                         <!-- Header -->
                         <div class="py-2 px-3 bg-grey-lighter flex flex-row justify-between items-center">
                             <div v-for="profile in user">
-                                <img v-if="profile.avatar" class="w-10 h-10 rounded-full" :src="profile.avatar"
+                                <img v-if="profile.avatar" class="w-7 h-7 rounded-full md:w-8 md:h-8" :src="profile.avatar"
                                     alt="Avatar" />
 
-                                <img v-else class="w-10 h-10 rounded-full" :src="Placeholder" alt="Avatar" />
+                                <img v-else class="w-7 h-7 rounded-full md:w-8 md:h-8" :src="Placeholder" alt="Avatar" />
                             </div>
 
-                            <div class="hidden md:flex">
+                            <div class="flex">
                                 <ArrowLeftOnRectangleIcon @click="handleLogOut()"
                                     class="w-6 h-6 cursor-pointer text-white" />
                             </div>

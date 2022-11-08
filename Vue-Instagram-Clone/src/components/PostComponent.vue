@@ -125,7 +125,7 @@ const likePost = async () => {
             <div>
                 <div class="px-4 py-2 truncate">
                     <div v-if="likes.length > 0">
-                        <p class="font-bold">{{ likes.length }} Likes</p>
+                        <p class="font-bold">{{ likes.length }} likes</p>
                     </div>
                     <div class="flex items-center mt-2">
                         <p class="mr-3 font-bold">{{ props.username }}</p>
