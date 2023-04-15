@@ -1,5 +1,5 @@
 
-# 8 Awesome Vue Projects 🚀
+# 8 Awesome Vue and Nuxt Projects For Beginners 🚀
 
 ### Note: The Firebase and Supabase config keys are exposed intentionally!!
 
