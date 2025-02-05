@@ -18,7 +18,7 @@
   "dependencies": {
     "@pinia/nuxt": "^0.4.2",
     "joi": "^17.6.2",
-    "mongoose": "^6.6.5",
+    "mongoose": "^6.13.6",
     "pinia": "^2.0.22",
     "vue-toastification": "^2.0.0-rc.5"
   }
