@@ -10,7 +10,7 @@
     "@heroicons/vue": "^2.0.7",
     "@tailwindcss/line-clamp": "^0.4.0",
     "@vueuse/core": "^9.1.1",
-    "axios": "^0.27.2",
+    "axios": "^0.30.0",
     "pinia": "^2.0.17",
     "tailwind-scrollbar-hide": "^1.1.7",
     "vue": "^3.2.37",
